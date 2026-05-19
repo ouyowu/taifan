@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 type Star = {
   slug: string;
@@ -10,8 +9,6 @@ type Star = {
   nameCn: string;
   agency: string;
   bio?: string;
-  coverUrl?: string;
-  avatarUrl?: string;
   tags: string[];
   chinaFanPriority?: number;
 };
@@ -52,7 +49,6 @@ export function ArtistSearch({ stars }: ArtistSearchProps) {
 
   return (
     <div className="relative">
-      {/* Search input */}
       <div className="flex items-center gap-3 rounded-[16px] border-2 border-[#e8e8e8] bg-white px-5 py-4 shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition-all focus-within:border-[#f07030] focus-within:shadow-[0_4px_20px_rgba(240,112,48,0.15)]">
         <span className="text-[20px] shrink-0">🔍</span>
         <input
@@ -66,7 +62,6 @@ export function ArtistSearch({ stars }: ArtistSearchProps) {
         )}
       </div>
 
-      {/* Results dropdown */}
       {showResults && (
         <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-[20px] border border-[#e8e8e8] bg-white shadow-[0_16px_48px_rgba(0,0,0,0.15)] overflow-hidden">
           {results.length === 0 ? (
@@ -82,10 +77,10 @@ export function ArtistSearch({ stars }: ArtistSearchProps) {
                 return (
                   <Link key={star.slug} href={`/stars/${star.slug}`}
                     className="flex items-center gap-4 px-4 py-3 hover:bg-[#fff4ee] transition border-b border-[#f5f5f5] last:border-b-0">
-                    <div className="relative h-[52px] w-[40px] shrink-0 overflow-hidden rounded-[12px] bg-[#f0f0f0]">
-                      {star.coverUrl ? (
-                        <Image src={star.coverUrl} alt={star.nameEn} fill className="object-cover object-top" />
-                      ) : null}
+                    {/* Text initial avatar */}
+                    <div className="flex h-[52px] w-[40px] shrink-0 items-center justify-center rounded-[12px] font-en text-[20px] font-black text-white"
+                      style={{ background: `linear-gradient(135deg, #0f0f10, ${accent}55)` }}>
+                      {star.nameEn.charAt(0)}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-en text-[15px] font-bold text-[#1c1c1e]">{star.nameEn}</p>

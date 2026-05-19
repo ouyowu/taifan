@@ -1,11 +1,8 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { guideSections } from "@/lib/mock-data";
 import { buildPageMetadata } from "@/lib/metadata";
-import { listStars } from "@/lib/data";
-import { getImageObjectPosition } from "@/lib/image-focus";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "新粉攻略",
@@ -13,15 +10,11 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/guides",
 });
 
+const GUIDE_ACCENTS = ["#f07030", "#4d7b93", "#708230", "#8b5cf6"];
+
 export default async function GuidesPage() {
-  const stars = await listStars();
   const tones = ["#f0f8ff", "#fff4ee", "#f5fff0", "#f8f0ff"];
   const starterGuides = guideSections.slice(0, 3);
-  const guideVisuals = [
-    stars.find((star) => star.slug === "win-metawin")?.coverUrl ?? stars[0]?.coverUrl ?? "",
-    stars.find((star) => star.slug === "gemini-norawit")?.coverUrl ?? stars[1]?.coverUrl ?? "",
-    stars.find((star) => star.slug === "lingorm")?.coverUrl ?? stars[2]?.coverUrl ?? "",
-  ];
 
   return (
     <SiteShell>
@@ -62,16 +55,13 @@ export default async function GuidesPage() {
               key={section.title}
               className="lattice-card overflow-hidden p-4"
             >
-              <div className="relative h-[220px] overflow-hidden rounded-[20px] md:h-[250px] md:rounded-[24px]" style={{ backgroundColor: tones[index % tones.length] }}>
-                {guideVisuals[index] ? (
-                  <Image
-                    src={guideVisuals[index]}
-                    alt={section.title}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: getImageObjectPosition(guideVisuals[index], "wide") }}
-                  />
-                ) : null}
+              <div
+                className="flex h-[220px] items-center justify-center overflow-hidden rounded-[20px] md:h-[250px] md:rounded-[24px]"
+                style={{ background: `linear-gradient(135deg, #0f0f10, ${GUIDE_ACCENTS[index % GUIDE_ACCENTS.length]}33)` }}
+              >
+                <span className="select-none font-en text-[96px] font-black leading-none" style={{ color: `${GUIDE_ACCENTS[index % GUIDE_ACCENTS.length]}22` }}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
               </div>
               <div className="p-1 pt-4 md:p-2 md:pt-5">
                 <h2 className="lattice-title text-[26px] md:text-[30px]">{section.title}</h2>

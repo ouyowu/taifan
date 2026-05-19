@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
 import type { Event, Star } from "@/types/domain";
@@ -239,10 +238,8 @@ export function CalendarFilter({ events, stars }: CalendarFilterProps) {
             >
               {selectedStarObj ? (
                 <>
-                  <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full bg-[#fff4ee]">
-                    {selectedStarObj.coverUrl ? (
-                      <Image src={selectedStarObj.coverUrl} alt={selectedStarObj.nameEn} fill className="object-cover object-top" />
-                    ) : null}
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f07030] font-en text-[12px] font-black text-white">
+                    {selectedStarObj.nameEn.charAt(0)}
                   </div>
                   <span className="font-cn text-[13px] font-bold text-[#1c1c1e] truncate">{selectedStarObj.nameEn}</span>
                   <span
@@ -287,10 +284,8 @@ export function CalendarFilter({ events, stars }: CalendarFilterProps) {
                       onClick={() => { setSelectedStar(star.slug); setShowStarPicker(false); setStarSearch(""); }}
                       className={`w-full flex items-center gap-3 rounded-[10px] px-3 py-2.5 transition hover:bg-[#fff4ee] ${selectedStar === star.slug ? "bg-[#fff4ee]" : ""}`}
                     >
-                      <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full bg-[#f0f0f0]">
-                        {star.coverUrl ? (
-                          <Image src={star.coverUrl} alt={star.nameEn} fill className="object-cover object-top" />
-                        ) : null}
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f07030] font-en text-[11px] font-black text-white">
+                        {star.nameEn.charAt(0)}
                       </div>
                       <div className="text-left flex-1 min-w-0">
                         <p className="font-en text-[13px] font-bold text-[#1c1c1e] truncate">{star.nameEn}</p>
@@ -387,9 +382,9 @@ export function CalendarFilter({ events, stars }: CalendarFilterProps) {
                             </p>
                           </div>
 
-                          {posterStar?.coverUrl ? (
-                            <div className="relative h-[68px] w-[50px] shrink-0 overflow-hidden rounded-[10px] bg-[#f0f0f0] hidden sm:block">
-                              <Image src={posterStar.coverUrl} alt={posterStar.nameEn} fill className="object-cover object-top" />
+                          {posterStar ? (
+                            <div className="hidden h-[68px] w-[50px] shrink-0 items-center justify-center overflow-hidden rounded-[10px] bg-[#0f0f10] font-en text-[22px] font-black text-[#f07030]/30 sm:flex">
+                              {posterStar.nameEn.charAt(0)}
                             </div>
                           ) : null}
 

@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { siteConfig } from "@/lib/constants";
 import { getStarDetail } from "@/lib/data";
-import { getImageObjectPosition } from "@/lib/image-focus";
 import { buildPageMetadata } from "@/lib/metadata";
+
+const COMPANY_ACCENT: Record<string, string> = {
+  "GMMTV": "#f07030",
+  "Cloud 9 Entertainment": "#f07030",
+  "One31 / independent brand work": "#4a90d9",
+  "DOMUNDI TV": "#9b6eff",
+  "OPEN LABEL": "#4caf78",
+  "BeOnCloud": "#f07030",
+  "MEMINDY": "#e84040",
+  "Studio Wabi Sabi": "#4a90d9",
+  "Billkin Entertainment": "#f07030",
+  "PP Krit Entertainment": "#4caf78",
+  "CHANGE ARTIST": "#9b6eff",
+};
 
 const TYPE_LABEL: Record<string, string> = {
   fanmeeting: "见面会",
@@ -42,44 +54,41 @@ export default async function StarProfilePage({
     homeLocation: star.baseCity,
     affiliation: { "@type": "Organization", name: star.agency },
     url: `${siteConfig.siteUrl}/stars/${star.slug}`,
-    image: star.coverUrl || star.avatarUrl,
   };
+
+  const accent = COMPANY_ACCENT[star.agency] ?? "#f07030";
 
   return (
     <SiteShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }} />
 
-      {/* ── HERO BANNER ── */}
-      <section className="relative w-full overflow-hidden bg-[#1c1c1e]" style={{ height: "clamp(420px, 68vh, 760px)" }}>
-        {star.coverUrl ? (
-          <Image
-            src={star.coverUrl}
-            alt={star.nameEn}
-            fill
-            priority
-            className="object-cover"
-            style={{ objectPosition: getImageObjectPosition(star.coverUrl, "hero") }}
-          />
-        ) : null}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.75)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 page-shell mx-auto max-w-[1440px] pb-10 md:pb-14">
+      {/* ── HERO BANNER — text only ── */}
+      <section className="relative w-full overflow-hidden"
+        style={{ background: `linear-gradient(135deg, #0f0f10 0%, ${accent}28 100%)`, minHeight: "clamp(320px, 50vh, 520px)" }}>
+        {/* Decorative initial */}
+        <div className="absolute right-0 top-0 select-none font-en font-black leading-none opacity-[0.05] text-white"
+          style={{ fontSize: "clamp(240px, 35vw, 480px)", lineHeight: 1 }}>
+          {star.nameEn.charAt(0)}
+        </div>
+        <div className="relative page-shell mx-auto max-w-[1440px] flex flex-col justify-between py-12 md:py-16" style={{ minHeight: "inherit" }}>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
             <div>
               <div className="mb-4 flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-[#f07030] px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-white">
+                <span className="rounded-full px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-white"
+                  style={{ backgroundColor: accent }}>
                   {star.agency}
                 </span>
-                {star.fandomName ? (
-                  <span className="rounded-full border border-white/30 px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-white/80">
+                {star.fandomName && (
+                  <span className="rounded-full border border-white/30 px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-white/70">
                     {star.fandomName}
                   </span>
-                ) : null}
+                )}
               </div>
               <h1 className="font-en font-black leading-[0.92] tracking-[-0.04em] text-white"
                   style={{ fontSize: "clamp(48px, 8vw, 96px)" }}>
                 {star.nameEn}
               </h1>
-              <p className="font-cn mt-3 text-[20px] font-bold text-white/80">{star.nameCn}</p>
+              <p className="font-cn mt-3 text-[20px] font-bold text-white/60">{star.nameCn}</p>
             </div>
             <div className="flex items-center gap-5 rounded-[18px] bg-white/10 px-6 py-4 backdrop-blur-md w-fit">
               <div className="text-center">
@@ -145,33 +154,16 @@ export default async function StarProfilePage({
               </div>
             </div>
 
-            {/* Photo grid — tall poster left, stacked right */}
-            {(star.coverUrl || star.avatarUrl) ? (
-              <div className="grid grid-cols-[1.65fr_1fr] gap-3 md:gap-4">
-                {/* Tall poster */}
-                <div className="relative overflow-hidden rounded-[22px] bg-[#fff4ee]" style={{ aspectRatio: "3/4" }}>
-                  {star.coverUrl ? (
-                    <Image src={star.coverUrl} alt={star.nameEn} fill className="object-cover"
-                      style={{ objectPosition: getImageObjectPosition(star.coverUrl, "poster") }} />
-                  ) : null}
-                </div>
-                {/* Right column stacked */}
-                <div className="flex flex-col gap-3 md:gap-4">
-                  <div className="relative overflow-hidden rounded-[22px] bg-[#f8f0ff]" style={{ flex: "1 1 0" }}>
-                    {star.avatarUrl ? (
-                      <Image src={star.avatarUrl} alt={star.nameEn} fill className="object-cover"
-                        style={{ objectPosition: getImageObjectPosition(star.avatarUrl, "avatar") }} />
-                    ) : (star.coverUrl ? (
-                      <Image src={star.coverUrl} alt={star.nameEn} fill className="object-cover"
-                        style={{ objectPosition: "center 20%" }} />
-                    ) : null)}
-                  </div>
-                  <div className="rounded-[22px] bg-[#1c1c1e] p-5 flex flex-col justify-end" style={{ minHeight: "110px" }}>
-                    <p className="font-sans text-[9px] uppercase tracking-[0.14em] text-white/40 mb-2">Follow tracks</p>
-                    <p className="font-cn text-[13px] font-bold text-white leading-[1.5]">
-                      {star.spotlight.slice(0, 2).join(" / ")}
-                    </p>
-                  </div>
+            {/* Profile facts */}
+            {star.profileFacts?.length ? (
+              <div className="rounded-[24px] border border-[#e8e8e8] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.07)] md:p-8">
+                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030] mb-4">Profile</p>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {star.profileFacts.map((fact) => (
+                    <div key={fact} className="rounded-[12px] bg-[#fafafa] px-4 py-3">
+                      <p className="font-cn text-[13px] text-[#1c1c1e]">{fact}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             ) : null}
@@ -325,6 +317,5 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${star.nameEn} | 明星资料`,
     description: `${star.nameCn} / ${star.nameEn} 的中文追星入口，当前聚合活动 ${events.length} 条、动态 ${news.length} 条。`,
     path: `/stars/${star.slug}`,
-    image: star.coverUrl || star.avatarUrl,
   });
 }

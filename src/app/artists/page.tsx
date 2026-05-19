@@ -1,11 +1,9 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { listStars } from "@/lib/data";
 import { officialSourceCatalog } from "@/lib/source-catalog";
-import { getImageObjectPosition } from "@/lib/image-focus";
 import { buildPageMetadata } from "@/lib/metadata";
 import { ArtistSearch } from "@/components/artist-search";
 
@@ -53,7 +51,6 @@ export default async function ArtistsPage() {
   const stars = await listStars();
   const sorted = [...stars].sort((a, b) => (a.chinaFanPriority ?? 99) - (b.chinaFanPriority ?? 99));
 
-  // Top 10 core
   const top10 = sorted.filter((s) => s.chinaFanPriority && s.chinaFanPriority <= 10);
   const extendedRoster = sorted.filter((s) => !s.chinaFanPriority || s.chinaFanPriority > 10);
 
@@ -70,7 +67,7 @@ export default async function ArtistsPage() {
     <SiteShell>
       <section className="page-shell mx-auto max-w-[1440px] py-10 md:py-14">
 
-        {/* ── HEADER + SEARCH (search promoted as main entry) ── */}
+        {/* ── HEADER + SEARCH ── */}
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-3">
             <div className="h-[2px] w-5 rounded bg-[#f07030]" />
@@ -96,14 +93,12 @@ export default async function ArtistsPage() {
               </div>
             </div>
           </div>
-
-          {/* Search — promoted, full-width */}
           <div className="mt-7">
             <ArtistSearch stars={stars} />
           </div>
         </div>
 
-        {/* ── TOP 10 — editorial: featured #1 + 9-card grid ── */}
+        {/* ── TOP 10 ── */}
         {top10.length > 0 && (
           <div id="core-roster" className="mb-16">
             <div className="mb-6 flex items-end justify-between gap-3">
@@ -119,112 +114,96 @@ export default async function ArtistsPage() {
               <p className="font-cn text-[12px] text-[#aeaeb2] hidden md:block">点击任意卡片进入艺人页</p>
             </div>
 
-            {/* Featured #1 hero + grid layout */}
             <div className="grid gap-4 md:gap-5 lg:grid-cols-[1.4fr_1fr]">
 
               {/* === Hero #1 === */}
-              {top10[0] ? (
-                <Link href={`/stars/${top10[0].slug}`}
-                  className="group relative block overflow-hidden rounded-[28px] border border-[#e8e8e8] bg-[#0f0f10] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(240,112,48,0.22)]">
-                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                    {top10[0].coverUrl ? (
-                      <Image
-                        src={top10[0].coverUrl}
-                        alt={top10[0].nameEn}
-                        fill
-                        priority
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-[800ms] group-hover:scale-[1.05]"
-                        style={{ objectPosition: getImageObjectPosition(top10[0].coverUrl, "hero") }}
-                      />
-                    ) : top10[0].avatarUrl ? (
-                      <Image src={top10[0].avatarUrl} alt={top10[0].nameEn} fill className="object-cover" style={{ objectPosition: "center 18%" }} />
-                    ) : (
-                      <div className="flex h-full items-center justify-center bg-[#fff4ee]">
-                        <span className="font-en text-[120px] font-black text-[#f07030]/30">{top10[0].nameEn.charAt(0)}</span>
+              {top10[0] ? (() => {
+                const accent = COMPANY_ACCENT[top10[0].agency] ?? "#f07030";
+                return (
+                  <Link href={`/stars/${top10[0].slug}`}
+                    className="group relative block overflow-hidden rounded-[28px] border border-[#e8e8e8] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(240,112,48,0.22)]"
+                    style={{ background: `linear-gradient(135deg, #0f0f10 0%, ${accent}22 100%)` }}>
+                    <div className="relative flex w-full flex-col justify-between p-7 md:p-10" style={{ minHeight: "420px" }}>
+                      {/* Decorative initial */}
+                      <div className="absolute right-6 top-4 select-none font-en text-[160px] font-black leading-none opacity-[0.06] text-white md:text-[200px]">
+                        {top10[0].nameEn.charAt(0)}
                       </div>
-                    )}
 
-                    {/* Strong editorial gradient */}
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0)_30%,rgba(0,0,0,0.25)_60%,rgba(0,0,0,0.85)_100%)]" />
-
-                    {/* Top-left: big rank + "主追第一位" */}
-                    <div className="absolute left-5 top-5 md:left-7 md:top-7">
-                      <div className="flex items-baseline gap-2">
-                        <span className="font-en text-[64px] font-black leading-none text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] md:text-[80px]">01</span>
-                        <span className="font-cn text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">No.1</span>
-                      </div>
-                      <span className="font-cn mt-2 inline-flex rounded-full bg-[#f07030] px-3 py-1.5 text-[11px] font-bold text-white shadow-[0_4px_14px_rgba(240,112,48,0.5)]">
-                        中国粉丝最关注
-                      </span>
-                    </div>
-
-                    {/* Bottom: name + agency + bio */}
-                    <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
-                      <p className="font-en text-[11px] font-bold uppercase tracking-[0.18em] text-[#ffb088] md:text-[12px]">
-                        {top10[0].agency}
-                      </p>
-                      <h3 className="font-en mt-2 text-[34px] font-black leading-[0.98] tracking-[-0.02em] text-white md:text-[48px]">
-                        {top10[0].nameEn}
-                      </h3>
-                      {top10[0].nameCn ? (
-                        <p className="font-cn mt-1 text-[14px] text-white/70 md:text-[16px]">{top10[0].nameCn}</p>
-                      ) : null}
-                      {top10[0].bio ? (
-                        <p className="font-cn mt-3 max-w-[520px] text-[12px] leading-[1.7] text-white/85 line-clamp-2 md:text-[13px]">
-                          {top10[0].bio}
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-                </Link>
-              ) : null}
-
-              {/* === #2-#10 → 3-col tight grid === */}
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:auto-rows-fr">
-                {top10.slice(1).map((star) => (
-                  <Link key={star.slug} href={`/stars/${star.slug}`}
-                    className="group relative block overflow-hidden rounded-[18px] border border-[#e8e8e8] bg-[#0f0f10] shadow-[0_2px_14px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(240,112,48,0.18)]">
-                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                      {star.coverUrl ? (
-                        <Image
-                          src={star.coverUrl}
-                          alt={star.nameEn}
-                          fill
-                          sizes="(min-width: 1024px) 16vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                          style={{ objectPosition: getImageObjectPosition(star.coverUrl, "wide") }}
-                        />
-                      ) : star.avatarUrl ? (
-                        <Image src={star.avatarUrl} alt={star.nameEn} fill className="object-cover" style={{ objectPosition: "center 18%" }} />
-                      ) : (
-                        <div className="flex h-full items-center justify-center bg-[#fff4ee]">
-                          <span className="font-en text-[44px] font-black text-[#f07030]/30">{star.nameEn.charAt(0)}</span>
+                      {/* Top: rank */}
+                      <div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-en text-[64px] font-black leading-none text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] md:text-[80px]">01</span>
+                          <span className="font-cn text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">No.1</span>
                         </div>
-                      )}
-
-                      {/* Bottom-up gradient */}
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_45%,rgba(0,0,0,0.85)_100%)]" />
-
-                      {/* Big rank number top-left, no badge box */}
-                      <div className="absolute left-3 top-2.5">
-                        <span className="font-en text-[28px] font-black leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] md:text-[34px]">
-                          {String(star.chinaFanPriority).padStart(2, "0")}
+                        <span className="font-cn mt-2 inline-flex rounded-full px-3 py-1.5 text-[11px] font-bold text-white shadow-[0_4px_14px_rgba(0,0,0,0.3)]"
+                          style={{ backgroundColor: accent }}>
+                          中国粉丝最关注
                         </span>
                       </div>
 
-                      {/* Bottom: name only — no agency/bio chrome */}
-                      <div className="absolute inset-x-0 bottom-0 p-3 md:p-3.5">
-                        <p className="font-en text-[14px] font-black leading-[1.1] tracking-[-0.01em] text-white md:text-[16px]">
-                          {star.nameEn}
+                      {/* Bottom: name + agency + bio */}
+                      <div className="mt-10">
+                        <p className="font-en text-[11px] font-bold uppercase tracking-[0.18em] opacity-70 md:text-[12px]"
+                          style={{ color: accent }}>
+                          {top10[0].agency}
                         </p>
-                        {star.nameCn ? (
-                          <p className="font-cn mt-0.5 text-[10px] text-white/65">{star.nameCn}</p>
-                        ) : null}
+                        <h3 className="font-en mt-2 text-[40px] font-black leading-[0.98] tracking-[-0.02em] text-white md:text-[56px]">
+                          {top10[0].nameEn}
+                        </h3>
+                        {top10[0].nameCn && (
+                          <p className="font-cn mt-1 text-[15px] text-white/60 md:text-[17px]">{top10[0].nameCn}</p>
+                        )}
+                        {top10[0].bio && (
+                          <p className="font-cn mt-4 max-w-[520px] text-[13px] leading-[1.7] text-white/70 line-clamp-2">
+                            {top10[0].bio}
+                          </p>
+                        )}
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {(top10[0].tags ?? []).slice(0, 3).map((tag) => (
+                            <span key={tag} className="font-cn rounded-full border border-white/20 px-3 py-1 text-[11px] text-white/60">{tag}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </Link>
-                ))}
+                );
+              })() : null}
+
+              {/* === #2–#10 grid === */}
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:auto-rows-fr">
+                {top10.slice(1).map((star) => {
+                  const accent = COMPANY_ACCENT[star.agency] ?? "#f07030";
+                  return (
+                    <Link key={star.slug} href={`/stars/${star.slug}`}
+                      className="group relative block overflow-hidden rounded-[18px] border border-[#e8e8e8] shadow-[0_2px_14px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(240,112,48,0.18)]"
+                      style={{ background: `linear-gradient(135deg, #0f0f10 0%, ${accent}18 100%)` }}>
+                      <div className="relative flex flex-col justify-between p-3 md:p-4" style={{ minHeight: "160px" }}>
+                        {/* Decorative initial */}
+                        <div className="absolute right-2 top-1 select-none font-en text-[72px] font-black leading-none opacity-[0.07] text-white">
+                          {star.nameEn.charAt(0)}
+                        </div>
+
+                        {/* Rank */}
+                        <span className="font-en text-[28px] font-black leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] md:text-[34px]">
+                          {String(star.chinaFanPriority).padStart(2, "0")}
+                        </span>
+
+                        {/* Name */}
+                        <div className="mt-3">
+                          <p className="font-en text-[14px] font-black leading-[1.1] tracking-[-0.01em] text-white md:text-[15px]">
+                            {star.nameEn}
+                          </p>
+                          {star.nameCn && (
+                            <p className="font-cn mt-0.5 text-[10px] text-white/55">{star.nameCn}</p>
+                          )}
+                          <p className="font-en mt-1 text-[10px] font-bold" style={{ color: accent + "99" }}>
+                            {star.agency.split(" ")[0]}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -261,7 +240,7 @@ export default async function ArtistsPage() {
           </div>
         </div>
 
-        {/* ── EXTENDED ROSTER — by company ── */}
+        {/* ── EXTENDED ROSTER ── */}
         {extendedRoster.length > 0 && (
           <div id="company-roster">
             <div className="mb-6 flex items-center gap-3">
@@ -295,31 +274,23 @@ export default async function ArtistsPage() {
                         {companyStars.map((star) => (
                           <Link key={star.slug} href={`/stars/${star.slug}`}
                             className="group block overflow-hidden rounded-[18px] border border-[#e8e8e8] bg-white shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_32px_rgba(240,112,48,0.15)]">
-                            <div className="relative w-full overflow-hidden bg-[#f5f5f5]" style={{ aspectRatio: "2/3" }}>
-                              {star.coverUrl ? (
-                                <Image src={star.coverUrl} alt={star.nameEn} fill
-                                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                                  style={{ objectPosition: getImageObjectPosition(star.coverUrl, "wide") }} />
-                              ) : star.avatarUrl ? (
-                                <Image src={star.avatarUrl} alt={star.nameEn} fill
-                                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                                  style={{ objectPosition: "center 10%" }} />
-                              ) : (
-                                <div className="flex h-full items-center justify-center" style={{ backgroundColor: accent + "18" }}>
-                                  <span className="font-en text-[36px] font-black" style={{ color: accent + "40" }}>
-                                    {star.nameEn.charAt(0)}
-                                  </span>
-                                </div>
-                              )}
-                              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(0,0,0,0.6)_100%)]" />
-                              <div className="absolute inset-x-0 bottom-0 p-3">
-                                <p className="font-en text-[13px] font-black leading-[1.1] tracking-[-0.02em] text-white">{star.nameEn}</p>
-                                {star.nameCn ? <p className="font-cn mt-0.5 text-[10px] text-white/70">{star.nameCn}</p> : null}
+                            {/* Text-only card top area */}
+                            <div className="relative flex flex-col justify-between p-4"
+                              style={{ minHeight: "110px", background: `linear-gradient(135deg, #0f0f10 0%, ${accent}20 100%)` }}>
+                              <div className="absolute right-3 top-2 select-none font-en text-[52px] font-black leading-none opacity-[0.07] text-white">
+                                {star.nameEn.charAt(0)}
+                              </div>
+                              <p className="font-en text-[10px] font-bold uppercase tracking-[0.12em] opacity-60" style={{ color: accent }}>
+                                {star.agency.split(" ")[0]}
+                              </p>
+                              <div>
+                                <p className="font-en text-[14px] font-black leading-[1.1] text-white">{star.nameEn}</p>
+                                {star.nameCn && <p className="font-cn mt-0.5 text-[10px] text-white/55">{star.nameCn}</p>}
                               </div>
                             </div>
                             <div className="px-3 py-2.5">
                               <p className="font-cn text-[10px] font-bold truncate" style={{ color: accent }}>{star.agency}</p>
-                              {star.bio ? <p className="font-cn mt-1 text-[10px] leading-[1.5] text-[#6e6e73] line-clamp-2">{star.bio}</p> : null}
+                              {star.bio && <p className="font-cn mt-1 text-[10px] leading-[1.5] text-[#6e6e73] line-clamp-2">{star.bio}</p>}
                             </div>
                           </Link>
                         ))}

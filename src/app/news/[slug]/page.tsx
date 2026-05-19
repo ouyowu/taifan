@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
@@ -8,8 +7,17 @@ import { zhCN } from "date-fns/locale";
 import { SiteShell } from "@/components/layout/site-shell";
 import { siteConfig } from "@/lib/constants";
 import { getNewsDetail } from "@/lib/data";
-import { getImageObjectPosition } from "@/lib/image-focus";
 import { buildPageMetadata } from "@/lib/metadata";
+
+const COMPANY_ACCENT: Record<string, string> = {
+  GMMTV: "#f07030",
+  "Studio Wabi Sabi": "#e0a030",
+  "BeOnCloud": "#4d7b93",
+  "Me Mind Y": "#8b5cf6",
+  "GDH": "#708230",
+  "Open Label": "#e05080",
+  "DoMunDi TV": "#30a0b0",
+};
 
 export default async function NewsDetailPage({
   params,
@@ -22,7 +30,7 @@ export default async function NewsDetailPage({
 
   const { news, stars } = detail;
   const leadStar = stars[0];
-  const newsVisuals = [leadStar?.coverUrl, leadStar?.avatarUrl, ...stars.slice(1).flatMap((star) => [star.coverUrl, star.avatarUrl])].filter(Boolean) as string[];
+  const accent = COMPANY_ACCENT[leadStar?.agency ?? ""] ?? "#f07030";
   const articleParagraphs = news.bodyMd.split(/\n{2,}/).filter(Boolean);
   const readMinutes = Math.max(1, Math.round(articleParagraphs.join("").length / 220));
   const articleStructuredData = {
@@ -42,7 +50,7 @@ export default async function NewsDetailPage({
       "@type": "Organization",
       name: "ThaiStar Bridge / 泰娱桥",
     },
-    image: leadStar?.coverUrl ? [leadStar.coverUrl] : undefined,
+    image: undefined,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteConfig.siteUrl}/news/${news.slug}`,
@@ -59,16 +67,13 @@ export default async function NewsDetailPage({
       />
       <section className="page-shell mx-auto max-w-[1040px] py-12 md:py-16">
         <div className="flex items-start gap-4 md:gap-5">
-          <div className="relative h-[68px] w-[68px] shrink-0 overflow-hidden rounded-full bg-[#fff4ee] md:h-[78px] md:w-[78px]">
-            {leadStar?.avatarUrl ? (
-              <Image
-                src={leadStar.avatarUrl}
-                alt={leadStar.nameEn}
-                fill
-                className="object-cover"
-                style={{ objectPosition: getImageObjectPosition(leadStar.avatarUrl, "avatar") }}
-              />
-            ) : null}
+          <div
+            className="flex h-[68px] w-[68px] shrink-0 items-center justify-center overflow-hidden rounded-full md:h-[78px] md:w-[78px]"
+            style={{ background: `linear-gradient(135deg, #0f0f10, ${accent}55)` }}
+          >
+            <span className="select-none font-en text-[28px] font-black text-white/20">
+              {leadStar?.nameEn.charAt(0) ?? "T"}
+            </span>
           </div>
           <div>
             <p className="lattice-title text-[24px]">{leadStar?.nameEn ?? "ThaiStar Bridge Desk"}</p>
@@ -109,28 +114,22 @@ export default async function NewsDetailPage({
           <div className="lattice-card overflow-hidden p-4 md:p-5">
             <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-[#f07030]">News poster board</p>
             <div className="mt-3 grid gap-3 sm:grid-cols-[1.05fr_0.95fr]">
-              <div className="relative min-h-[220px] overflow-hidden rounded-[24px] bg-[#fff4ee] md:min-h-[280px] md:rounded-[28px]">
-                {leadStar?.coverUrl ? (
-                  <Image
-                    src={leadStar.coverUrl}
-                    alt={leadStar.nameEn}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: getImageObjectPosition(leadStar.coverUrl, "poster") }}
-                  />
-                ) : null}
+              <div
+                className="flex min-h-[220px] items-center justify-center overflow-hidden rounded-[24px] md:min-h-[280px] md:rounded-[28px]"
+                style={{ background: `linear-gradient(135deg, #0f0f10, ${accent}33)` }}
+              >
+                <span className="select-none font-en text-[120px] font-black leading-none" style={{ color: `${accent}18` }}>
+                  {leadStar?.nameEn.charAt(0) ?? "T"}
+                </span>
               </div>
               <div className="grid gap-3">
-                <div className="relative min-h-[116px] overflow-hidden rounded-[20px] bg-[#fff4ee] md:min-h-[136px] md:rounded-[24px]">
-                  {leadStar?.avatarUrl ? (
-                    <Image
-                      src={leadStar.avatarUrl}
-                      alt={leadStar.nameEn}
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: getImageObjectPosition(leadStar.avatarUrl, "wide") }}
-                    />
-                  ) : null}
+                <div
+                  className="flex min-h-[116px] items-center justify-center overflow-hidden rounded-[20px] md:min-h-[136px] md:rounded-[24px]"
+                  style={{ background: `linear-gradient(135deg, #0f0f10, ${accent}22)` }}
+                >
+                  <span className="select-none font-en text-[48px] font-black" style={{ color: `${accent}25` }}>
+                    {leadStar?.nameEn.split(" ")[1]?.charAt(0) ?? leadStar?.nameEn.charAt(0) ?? "T"}
+                  </span>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="rounded-[20px] bg-[#f0f8ff] p-4 md:rounded-[24px]">
@@ -151,20 +150,17 @@ export default async function NewsDetailPage({
             <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-[#f07030]">How to read</p>
             <h2 className="lattice-title mt-3 text-[24px] md:text-[28px]">Read the summary. Keep the title.</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="relative min-h-[140px] overflow-hidden rounded-[18px] bg-[#f0f8ff] md:rounded-[22px]">
-                {leadStar?.coverUrl ? (
-                  <Image
-                    src={leadStar.coverUrl}
-                    alt={leadStar.nameEn}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: getImageObjectPosition(leadStar.coverUrl, "wide") }}
-                  />
-                ) : null}
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(16,35,39,0.02)_0%,rgba(16,35,39,0.54)_100%)]" />
+              <div
+                className="relative flex min-h-[140px] items-center justify-center overflow-hidden rounded-[18px] md:rounded-[22px]"
+                style={{ background: `linear-gradient(135deg, #0f0f10, ${accent}33)` }}
+              >
+                <span className="select-none font-en text-[72px] font-black leading-none" style={{ color: `${accent}18` }}>
+                  {leadStar?.nameEn.charAt(0) ?? "T"}
+                </span>
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_40%,rgba(0,0,0,0.6)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-3">
                   <p className="font-en text-[18px] font-black tracking-[-0.03em] text-white">{leadStar?.nameEn ?? "Thai star"}</p>
-                  <p className="font-cn mt-1 text-[11px] text-white/82">{news.category} · {stars.length} 位相关艺人</p>
+                  <p className="font-cn mt-1 text-[11px] text-white/80">{news.category} · {stars.length} 位相关艺人</p>
                 </div>
               </div>
               <div className="grid gap-3">
@@ -207,19 +203,15 @@ export default async function NewsDetailPage({
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-2">
-              {newsVisuals.slice(0, 4).map((imageUrl, index) => (
+              {stars.slice(0, 4).map((star, index) => (
                 <div
                   key={`${news.slug}-article-visual-${index}`}
-                  className="relative min-h-[142px] overflow-hidden rounded-[20px]"
-                  style={{ backgroundColor: index === 1 ? "#f5fff0" : "#fff4ee" }}
+                  className="flex min-h-[142px] items-center justify-center overflow-hidden rounded-[20px]"
+                  style={{ background: `linear-gradient(135deg, #0f0f10, ${COMPANY_ACCENT[star.agency] ?? accent}28)` }}
                 >
-                  <Image
-                    src={imageUrl}
-                    alt={news.title}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: getImageObjectPosition(imageUrl, "wide") }}
-                  />
+                  <span className="select-none font-en text-[64px] font-black leading-none" style={{ color: `${COMPANY_ACCENT[star.agency] ?? accent}20` }}>
+                    {star.nameEn.charAt(0)}
+                  </span>
                 </div>
               ))}
               <div className="rounded-[20px] bg-white/55 p-4">
@@ -234,16 +226,13 @@ export default async function NewsDetailPage({
 
         <div className="mt-7 grid gap-3 md:grid-cols-3 md:gap-4">
           <div className="lattice-soft-card overflow-hidden bg-[#fff4ee] p-4">
-            <div className="relative mb-3 min-h-[112px] overflow-hidden rounded-[18px] bg-white/55 md:mb-4 md:min-h-[132px] md:rounded-[20px]">
-              {newsVisuals[0] ? (
-                <Image
-                  src={newsVisuals[0]}
-                  alt={leadStar?.nameEn ?? news.title}
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: getImageObjectPosition(newsVisuals[0], "avatar") }}
-                />
-              ) : null}
+            <div
+              className="mb-3 flex min-h-[112px] items-center justify-center overflow-hidden rounded-[18px] md:mb-4 md:min-h-[132px] md:rounded-[20px]"
+              style={{ background: `linear-gradient(135deg, #0f0f10, ${accent}22)` }}
+            >
+              <span className="select-none font-en text-[48px] font-black" style={{ color: `${accent}20` }}>
+                {leadStar?.nameEn.charAt(0) ?? "T"}
+              </span>
             </div>
             <p className="font-cn text-[12px] text-[#6e6e73]">内容来源类型</p>
             <p className="font-cn mt-2 text-[13px] font-bold text-[#1c1c1e]">
@@ -251,16 +240,13 @@ export default async function NewsDetailPage({
             </p>
           </div>
           <div className="lattice-soft-card overflow-hidden bg-[#fff4ee] p-4">
-            <div className="relative mb-3 min-h-[112px] overflow-hidden rounded-[18px] bg-white/55 md:mb-4 md:min-h-[132px] md:rounded-[20px]">
-              {newsVisuals[1] ? (
-                <Image
-                  src={newsVisuals[1]}
-                  alt={leadStar?.nameEn ?? news.title}
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: getImageObjectPosition(newsVisuals[1], "avatar") }}
-                />
-              ) : null}
+            <div
+              className="mb-3 flex min-h-[112px] items-center justify-center overflow-hidden rounded-[18px] md:mb-4 md:min-h-[132px] md:rounded-[20px]"
+              style={{ background: `linear-gradient(135deg, #0f0f10, ${accent}1a)` }}
+            >
+              <span className="select-none font-en text-[28px] font-black tracking-[-0.04em]" style={{ color: `${accent}30` }}>
+                {format(new Date(news.publishedAt), "M.d")}
+              </span>
             </div>
             <p className="font-cn text-[12px] text-[#6e6e73]">发布时间</p>
             <p className="font-en mt-2 text-[13px] font-bold text-[#1c1c1e]">
@@ -268,16 +254,13 @@ export default async function NewsDetailPage({
             </p>
           </div>
           <div className="lattice-soft-card overflow-hidden bg-[#f5fff0] p-4">
-            <div className="relative mb-3 min-h-[112px] overflow-hidden rounded-[18px] bg-white/55 md:mb-4 md:min-h-[132px] md:rounded-[20px]">
-              {newsVisuals[2] ?? newsVisuals[0] ? (
-                <Image
-                  src={(newsVisuals[2] ?? newsVisuals[0]) as string}
-                  alt={leadStar?.nameEn ?? news.title}
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: getImageObjectPosition((newsVisuals[2] ?? newsVisuals[0]) as string, "avatar") }}
-                />
-              ) : null}
+            <div
+              className="mb-3 flex min-h-[112px] items-center justify-center overflow-hidden rounded-[18px] md:mb-4 md:min-h-[132px] md:rounded-[20px]"
+              style={{ background: `linear-gradient(135deg, #0f0f10, #70823022)` }}
+            >
+              <span className="select-none font-en text-[48px] font-black" style={{ color: "#70823025" }}>
+                {stars.length}
+              </span>
             </div>
             <p className="font-cn text-[12px] text-[#6e6e73]">原始来源</p>
             {news.sourceUrl ? (
@@ -359,6 +342,6 @@ export async function generateMetadata({
     title: `${news.title} | 明星动态`,
     description: `${leadStar ? `${leadStar.nameEn} 相关动态：` : ""}${news.excerpt} ${news.sourceLabel ? `来源：${news.sourceLabel}。` : ""}中文快读 + 原文保留，方便继续搜索和核对。`,
     path: `/news/${news.slug}`,
-    image: leadStar?.coverUrl || leadStar?.avatarUrl,
+    image: undefined,
   });
 }

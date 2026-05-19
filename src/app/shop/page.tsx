@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { listStars } from "@/lib/data";
-import { getImageObjectPosition } from "@/lib/image-focus";
 import { buildPageMetadata } from "@/lib/metadata";
 import { primarySourceShowcaseEntries, sourceShowcaseEntries } from "@/lib/source-showcase";
 
@@ -176,20 +175,17 @@ export default async function ShopPage() {
                   key={product.id}
                   className="overflow-hidden rounded-[18px] bg-white shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
                 >
-                  <div className="relative aspect-square" style={{ backgroundColor: tones[index % tones.length] }}>
-                    <Image
-                      src={product.star.coverUrl}
-                      alt={product.star.nameEn}
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: getImageObjectPosition(product.star.coverUrl, "poster") }}
-                    />
-                    <div className="absolute left-3 top-3 flex flex-col gap-2">
+                  <div className="relative flex aspect-square flex-col justify-between p-4"
+                    style={{ background: `linear-gradient(135deg, #0f0f10, ${tones[index % tones.length]}55)` }}>
+                    <div className="flex items-start justify-between">
                       <span className="rounded-full bg-[#f07030] px-3 py-1 font-sans text-[10px] font-extrabold text-white">
                         {product.badge}
                       </span>
+                      <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-[16px] text-white/50">♡</button>
                     </div>
-                    <button className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[16px]">♡</button>
+                    <span className="select-none self-end font-en text-[80px] font-black leading-none text-white/[0.06]">
+                      {product.star.nameEn.charAt(0)}
+                    </span>
                   </div>
                   <div className="p-4">
                     <p className="font-sans text-[10px] font-extrabold uppercase tracking-[0.1em] text-[#f07030]">{product.company}</p>

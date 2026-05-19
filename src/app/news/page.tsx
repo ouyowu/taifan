@@ -1,5 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+
 import type { Metadata } from "next";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
@@ -8,7 +9,7 @@ import { connection } from "next/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { listNews, listStars } from "@/lib/data";
 import { getContentTagTheme } from "@/lib/content-tag-theme";
-import { getImageObjectPosition } from "@/lib/image-focus";
+
 import { buildPageMetadata } from "@/lib/metadata";
 import { primarySourceShowcaseEntries } from "@/lib/source-showcase";
 
@@ -162,23 +163,19 @@ export default async function NewsPage({
 
         {leadStory ? (
           <section className="mb-8 grid gap-4 rounded-[28px] border border-[#e8e8e8] bg-white p-4 shadow-[0_2px_16px_rgba(0,0,0,0.07)] lg:grid-cols-[1.05fr_0.95fr] md:mb-10 md:gap-5 md:rounded-[36px] md:p-5">
-            <div className="relative min-h-[300px] overflow-hidden rounded-[24px] md:min-h-[360px] md:rounded-[30px]">
+            <div className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[24px] p-5 md:min-h-[360px] md:rounded-[30px] md:p-7"
+              style={{ background: "linear-gradient(135deg, #0f0f10 0%, #f0703028 100%)" }}>
               {(() => {
                 const relatedStar = stars.find((star) => leadStory.relatedStars.includes(star.slug));
-                return relatedStar?.coverUrl ? (
-                  <Image
-                    src={relatedStar.coverUrl}
-                    alt={relatedStar.nameEn}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: getImageObjectPosition(relatedStar.coverUrl, "hero") }}
-                  />
-                ) : null;
+                return relatedStar ? (
+                  <span className="select-none self-end font-en text-[120px] font-black leading-none text-white/[0.05]">
+                    {relatedStar.nameEn.charAt(0)}
+                  </span>
+                ) : <span />;
               })()}
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,18,12,0.02)_0%,rgba(23,18,12,0.68)_100%)]" />
-                <div className="absolute inset-x-0 bottom-0 p-4 md:p-6">
+              <div>
                 <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-white/70">Lead Story</p>
-                  <p className="font-en mt-2 max-w-[520px] text-[22px] font-black leading-[1] tracking-[-0.04em] text-white md:mt-3 md:text-[38px]">
+                <p className="font-en mt-2 max-w-[520px] text-[22px] font-black leading-[1] tracking-[-0.04em] text-white md:mt-3 md:text-[38px]">
                   {leadStory.title}
                 </p>
               </div>
@@ -238,16 +235,8 @@ export default async function NewsPage({
                     style={{ backgroundColor: theme.soft }}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="relative h-[52px] w-[52px] overflow-hidden rounded-full border border-white/70 bg-white">
-                        {star.avatarUrl ? (
-                          <Image
-                            src={star.avatarUrl}
-                            alt={star.nameEn}
-                            fill
-                            className="object-cover"
-                            style={{ objectPosition: getImageObjectPosition(star.avatarUrl, "avatar") }}
-                          />
-                        ) : null}
+                      <div className="flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full border border-white/70 bg-[#f07030] font-en text-[22px] font-black text-white">
+                        {star.nameEn.charAt(0)}
                       </div>
                       <div>
                         <p className="font-en text-[18px] font-black tracking-[-0.03em] text-[#1f1a17]">{star.nameEn}</p>
@@ -284,20 +273,14 @@ export default async function NewsPage({
               const theme = getContentTagTheme(item.category);
               return (
                 <Link key={`${item.slug}-poster-grid`} href={`/news/${item.slug}`} className="lattice-card overflow-hidden p-3 transition hover:-translate-y-0.5">
-                  <div className="relative min-h-[220px] overflow-hidden rounded-[20px] md:min-h-[260px] md:rounded-[24px]" style={{ backgroundColor: theme.soft }}>
-                    {relatedStar?.coverUrl ? (
-                      <Image
-                        src={relatedStar.coverUrl}
-                        alt={relatedStar.nameEn}
-                        fill
-                        className="object-cover"
-                        style={{ objectPosition: getImageObjectPosition(relatedStar.coverUrl, "poster") }}
-                      />
-                    ) : null}
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(16,35,39,0.02)_0%,rgba(16,35,39,0.62)_100%)]" />
-                      <div className="absolute inset-x-0 bottom-0 p-3 md:p-4">
-                        <p className="font-en text-[18px] font-black tracking-[-0.03em] text-white md:text-[20px]">{relatedStar?.nameEn ?? "Thai entertainment"}</p>
-                      <p className="font-cn mt-1 text-[12px] text-white/82">{item.category}</p>
+                  <div className="relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[20px] p-4 md:min-h-[260px] md:rounded-[24px]"
+                    style={{ background: `linear-gradient(135deg, #0f0f10 0%, ${theme.soft}88 100%)` }}>
+                    <span className="select-none self-end font-en text-[72px] font-black leading-none text-white/[0.06]">
+                      {(relatedStar?.nameEn ?? "T").charAt(0)}
+                    </span>
+                    <div>
+                      <p className="font-en text-[18px] font-black tracking-[-0.03em] text-white md:text-[20px]">{relatedStar?.nameEn ?? "Thai entertainment"}</p>
+                      <p className="font-cn mt-1 text-[12px] text-white/70">{item.category}</p>
                     </div>
                   </div>
                   <div className="p-2 pt-4">
@@ -330,20 +313,12 @@ export default async function NewsPage({
                       href={`/news/${item.slug}`}
                       className="overflow-hidden rounded-[26px] border border-[#e8e8e8] bg-white shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition hover:-translate-y-0.5 md:rounded-[34px]"
                     >
-                      <div className="relative aspect-[4/5] overflow-hidden">
-                        {relatedStar?.coverUrl ? (
-                          <Image
-                            src={relatedStar.coverUrl}
-                            alt={relatedStar.nameEn}
-                            fill
-                            className="object-cover"
-                            style={{ objectPosition: getImageObjectPosition(relatedStar.coverUrl, "wide") }}
-                          />
-                        ) : null}
-                        <div
-                          className="absolute left-4 top-4 h-3 w-3 rounded-full"
-                          style={{ backgroundColor: theme.soft }}
-                        />
+                      <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden"
+                        style={{ background: `linear-gradient(135deg, #0f0f10 0%, ${theme.soft}88 100%)` }}>
+                        <span className="select-none font-en text-[96px] font-black leading-none text-white/[0.06]">
+                          {(relatedStar?.nameEn ?? "T").charAt(0)}
+                        </span>
+                        <div className="absolute left-4 top-4 h-3 w-3 rounded-full" style={{ backgroundColor: theme.soft }} />
                       </div>
                       <div className="p-4 md:p-5">
                         <div className="mb-3 flex flex-wrap items-center gap-2">

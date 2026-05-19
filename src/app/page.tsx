@@ -8,7 +8,6 @@ import { connection } from "next/server";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { listEvents, listServices, listStars } from "@/lib/data";
-import { getImageObjectPosition } from "@/lib/image-focus";
 import { buildPageMetadata } from "@/lib/metadata";
 import { primarySourceShowcaseEntries, sourceShowcaseEntries } from "@/lib/source-showcase";
 
@@ -124,56 +123,43 @@ export default async function HomePage() {
             </div>
           </div>
 
+          {/* Text-only hero artist cards */}
           <div className="flex items-center justify-center">
             <div className="relative h-[370px] w-[305px] sm:h-[410px] sm:w-[338px] lg:h-[445px] lg:w-[365px]">
               {heroStars[1] ? (
-                <div className="absolute left-0 top-1/2 z-[2] h-[205px] w-[146px] -translate-y-1/2 rotate-[-6deg] overflow-hidden rounded-[22px] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.1)] opacity-80 sm:h-[228px] sm:w-[160px] lg:h-[246px] lg:w-[172px]">
-                  <div className="relative h-[70%] w-full bg-[linear-gradient(135deg,#e8f4ff,#cce0ff)]">
-                    <Image
-                      src={heroStars[1].coverUrl}
-                      alt={heroStars[1].nameEn}
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: getImageObjectPosition(heroStars[1].coverUrl, "poster") }}
-                    />
-                  </div>
-                  <div className="p-[14px]">
-                    <p className="font-en text-[14px] font-black text-[#1c1c1e]">{heroStars[1].nameEn}</p>
-                    <p className="font-cn mt-1 text-[11px] text-[#f07030]">{heroStars[1].agency}</p>
+                <div className="absolute left-0 top-1/2 z-[2] h-[205px] w-[146px] -translate-y-1/2 rotate-[-6deg] overflow-hidden rounded-[22px] bg-[#0f0f10] shadow-[0_8px_40px_rgba(0,0,0,0.18)] opacity-80 sm:h-[228px] sm:w-[160px] lg:h-[246px] lg:w-[172px]"
+                  style={{ background: "linear-gradient(135deg,#0f0f10,#4a90d922)" }}>
+                  <div className="flex h-full flex-col justify-between p-4">
+                    <span className="font-en text-[44px] font-black leading-none text-white/[0.06]">{heroStars[1].nameEn.charAt(0)}</span>
+                    <div>
+                      <p className="font-en text-[13px] font-black text-white">{heroStars[1].nameEn}</p>
+                      <p className="font-cn mt-1 text-[10px] text-[#f07030]">{heroStars[1].agency.split(" ")[0]}</p>
+                    </div>
                   </div>
                 </div>
               ) : null}
               {heroStars[2] ? (
-                <div className="absolute right-0 top-1/2 z-[2] h-[205px] w-[146px] -translate-y-1/2 rotate-[6deg] overflow-hidden rounded-[22px] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.1)] opacity-80 sm:h-[228px] sm:w-[160px] lg:h-[246px] lg:w-[172px]">
-                  <div className="relative h-[70%] w-full bg-[linear-gradient(135deg,#f0fff0,#c8f0c8)]">
-                    <Image
-                      src={heroStars[2].coverUrl}
-                      alt={heroStars[2].nameEn}
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: getImageObjectPosition(heroStars[2].coverUrl, "poster") }}
-                    />
-                  </div>
-                  <div className="p-[14px]">
-                    <p className="font-en text-[14px] font-black text-[#1c1c1e]">{heroStars[2].nameEn}</p>
-                    <p className="font-cn mt-1 text-[11px] text-[#f07030]">{heroStars[2].agency}</p>
+                <div className="absolute right-0 top-1/2 z-[2] h-[205px] w-[146px] -translate-y-1/2 rotate-[6deg] overflow-hidden rounded-[22px] shadow-[0_8px_40px_rgba(0,0,0,0.18)] opacity-80 sm:h-[228px] sm:w-[160px] lg:h-[246px] lg:w-[172px]"
+                  style={{ background: "linear-gradient(135deg,#0f0f10,#f0703022)" }}>
+                  <div className="flex h-full flex-col justify-between p-4">
+                    <span className="font-en text-[44px] font-black leading-none text-white/[0.06]">{heroStars[2].nameEn.charAt(0)}</span>
+                    <div>
+                      <p className="font-en text-[13px] font-black text-white">{heroStars[2].nameEn}</p>
+                      <p className="font-cn mt-1 text-[10px] text-[#f07030]">{heroStars[2].agency.split(" ")[0]}</p>
+                    </div>
                   </div>
                 </div>
               ) : null}
               {heroStars[0] ? (
-                <div className="absolute left-1/2 top-1/2 z-[3] h-[268px] w-[196px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[22px] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.1)] sm:h-[292px] sm:w-[214px] lg:h-[312px] lg:w-[228px]">
-                  <div className="relative h-[70%] w-full bg-[linear-gradient(135deg,#fff4ee,#ffe0cc)]">
-                    <Image
-                      src={heroStars[0].coverUrl}
-                      alt={heroStars[0].nameEn}
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: getImageObjectPosition(heroStars[0].coverUrl, "hero") }}
-                    />
-                  </div>
-                  <div className="p-[14px]">
-                    <p className="font-en text-[14px] font-black text-[#1c1c1e]">{heroStars[0].nameEn}</p>
-                    <p className="font-cn mt-1 text-[11px] text-[#f07030]">{heroStars[0].agency}</p>
+                <div className="absolute left-1/2 top-1/2 z-[3] h-[268px] w-[196px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[22px] shadow-[0_8px_40px_rgba(240,112,48,0.25)] sm:h-[292px] sm:w-[214px] lg:h-[312px] lg:w-[228px]"
+                  style={{ background: "linear-gradient(135deg,#0f0f10,#f0703030)" }}>
+                  <div className="flex h-full flex-col justify-between p-5">
+                    <span className="font-en text-[72px] font-black leading-none text-white/[0.06]">{heroStars[0].nameEn.charAt(0)}</span>
+                    <div>
+                      <span className="mb-2 inline-block rounded-full bg-[#f07030] px-3 py-1 font-cn text-[10px] font-bold text-white">No.1</span>
+                      <p className="font-en text-[16px] font-black text-white">{heroStars[0].nameEn}</p>
+                      <p className="font-cn mt-1 text-[11px] text-white/50">{heroStars[0].nameCn}</p>
+                    </div>
                   </div>
                 </div>
               ) : null}
@@ -298,18 +284,14 @@ export default async function HomePage() {
                 className="overflow-hidden rounded-[20px] bg-white shadow-[0_2px_20px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-[7px] hover:shadow-[0_16px_40px_rgba(240,112,48,0.18)]"
               >
                 <div
-                  className="relative aspect-[7/8] sm:aspect-[5/6] lg:aspect-[7/8]"
-                  style={{ backgroundColor: posterTones[index % posterTones.length] }}
+                  className="relative flex aspect-[7/8] flex-col justify-between p-4 sm:aspect-[5/6] lg:aspect-[7/8]"
+                  style={{ background: `linear-gradient(135deg, #0f0f10, ${posterTones[index % posterTones.length]}44)` }}
                 >
-                  <Image
-                    src={star.coverUrl}
-                    alt={star.nameEn}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: getImageObjectPosition(star.coverUrl, "poster") }}
-                  />
-                  <span className="absolute left-3 top-3 rounded-full bg-white/92 px-3 py-1 font-cn text-[11px] font-bold text-[#6e6e73]">
+                  <span className="self-start rounded-full bg-white/10 px-3 py-1 font-cn text-[11px] font-bold text-white/70">
                     {star.baseCity || "Thailand"}
+                  </span>
+                  <span className="select-none self-end font-en text-[80px] font-black leading-none text-white/[0.05]">
+                    {star.nameEn.charAt(0)}
                   </span>
                 </div>
                 <div className="p-4">
@@ -450,16 +432,13 @@ export default async function HomePage() {
                 href="/shop"
                 className="overflow-hidden rounded-[20px] bg-[#fafafa] shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
               >
-                <div className="relative aspect-square" style={{ backgroundColor: posterTones[index % posterTones.length] }}>
-                  <Image
-                    src={item.star.coverUrl}
-                    alt={item.star.nameEn}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: getImageObjectPosition(item.star.coverUrl, "poster") }}
-                  />
-                  <span className="absolute right-3 top-3 rounded-full bg-[#f07030] px-3 py-1 font-sans text-[10px] font-extrabold text-white">
+                <div className="relative flex aspect-square flex-col justify-between p-4"
+                  style={{ background: `linear-gradient(135deg, #0f0f10, ${posterTones[index % posterTones.length]}55)` }}>
+                  <span className="self-end rounded-full bg-[#f07030] px-3 py-1 font-sans text-[10px] font-extrabold text-white">
                     {item.badge}
+                  </span>
+                  <span className="select-none self-start font-en text-[80px] font-black leading-none text-white/[0.05]">
+                    {item.star.nameEn.charAt(0)}
                   </span>
                 </div>
                 <div className="bg-white p-4">

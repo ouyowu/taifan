@@ -23,6 +23,7 @@ export const stars: Star[] = [
       "https://www.gmm-tv.com/cms/upload_file/vj_floating2026/pic/Bright_800.jpg",
       "https://www.gmm-tv.com/cms/upload_file/vj_floating2026/thumb/Bright_300.jpg",
     ],
+    instagramHandle: "bbrightvc",
     profileFacts: ["生日 1996.05.11", "身高 177 cm", "体重 69 kg", "官方原文名 BRIGHT : Rapheephong Thapsuwan"],
     spotlight: ["品牌快闪", "公开活动", "媒体通告"],
     profileNotes: [
@@ -54,6 +55,7 @@ export const stars: Star[] = [
       "https://www.gmm-tv.com/cms/upload_file/vj_floating2026/pic/Win_800.jpg",
       "https://www.gmm-tv.com/cms/upload_file/vj_floating2026/thumb/Win_300.jpg",
     ],
+    instagramHandle: "winmetawin",
     profileFacts: ["生日 1999.02.21", "身高 185 cm", "体重 71 kg", "官方原文名 WIN : Metawin Opas-iamkajorn"],
     spotlight: ["品牌发布", "海外活动", "机场出行"],
     profileNotes: [

@@ -10,6 +10,7 @@ export type Star = {
   avatarUrl: string;
   coverUrl: string;
   galleryUrls?: string[];
+  instagramHandle?: string;
   profileFacts?: string[];
   spotlight: string[];
   profileNotes?: string[];
