@@ -1,0 +1,17 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#EEF3EA"/>
+  <rect x="60" y="60" width="1080" height="1480" rx="48" fill="url(#paint0_linear)"/>
+  <circle cx="510" cy="430" r="250" fill="#D8E3C8"/>
+  <rect x="250" y="220" width="700" height="820" rx="340" fill="#1D2520"/>
+  <rect x="350" y="320" width="500" height="620" rx="250" fill="#A4B773"/>
+  <rect x="180" y="1090" width="840" height="260" rx="28" fill="rgba(255,250,242,0.82)"/>
+  <text x="180" y="1160" fill="#7A8C52" font-family="Georgia, serif" font-size="34" letter-spacing="10">THAISTAR BRIDGE</text>
+  <text x="180" y="1260" fill="#1F1A17" font-family="Georgia, serif" font-size="92" font-weight="700">Gemini</text>
+  <text x="180" y="1330" fill="#4F4338" font-family="Arial, sans-serif" font-size="34">New-gen growth / fan meets / campus schedules</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="120" y1="120" x2="1040" y2="1480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E5EDD6"/>
+      <stop offset="1" stop-color="#C8D5A9"/>
+    </linearGradient>
+  </defs>
+</svg>

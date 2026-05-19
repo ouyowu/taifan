@@ -1,0 +1,8 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="120" rx="24" fill="#EEF5FF"/>
+  <rect x="20" y="20" width="84" height="84" rx="20" fill="#1A6BFF"/>
+  <path d="M39 44H84V52H68V77H55V52H39V44Z" fill="white"/>
+  <path d="M39 59H84V67H39V59Z" fill="white" fill-opacity="0.8"/>
+  <text x="122" y="57" fill="#1C1C1E" font-family="Arial, sans-serif" font-size="28" font-weight="700">GMMTV</text>
+  <text x="122" y="85" fill="#1A6BFF" font-family="Arial, sans-serif" font-size="18" font-weight="700">OFFICIAL NEWS</text>
+</svg>

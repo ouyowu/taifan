@@ -1,0 +1,17 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1600" fill="#F7EEF1"/>
+  <rect x="60" y="60" width="1080" height="1480" rx="48" fill="url(#paint0_linear)"/>
+  <circle cx="600" cy="420" r="250" fill="#F0D6DE"/>
+  <rect x="250" y="220" width="700" height="820" rx="340" fill="#2A1D22"/>
+  <rect x="350" y="320" width="500" height="620" rx="250" fill="#C78EA1"/>
+  <rect x="180" y="1090" width="840" height="260" rx="28" fill="rgba(255,250,242,0.82)"/>
+  <text x="180" y="1160" fill="#9A5A73" font-family="Georgia, serif" font-size="34" letter-spacing="10">THAISTAR BRIDGE</text>
+  <text x="180" y="1260" fill="#1F1A17" font-family="Georgia, serif" font-size="92" font-weight="700">LingOrm</text>
+  <text x="180" y="1330" fill="#4F4338" font-family="Arial, sans-serif" font-size="34">CP moments / fan connection / easy-entry live updates</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="120" y1="120" x2="1040" y2="1480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4DCE4"/>
+      <stop offset="1" stop-color="#DEB1C1"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,7 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="120" rx="24" fill="#F5FFF0"/>
+  <rect x="20" y="20" width="84" height="84" rx="20" fill="#4CAF78"/>
+  <path d="M43 77V43H57L69 57L81 43H95V77H81V60L69 71L57 60V77H43Z" fill="white"/>
+  <text x="124" y="56" fill="#1C1C1E" font-family="Arial, sans-serif" font-size="24" font-weight="700">ME</text>
+  <text x="124" y="84" fill="#4CAF78" font-family="Arial, sans-serif" font-size="24" font-weight="700">MIND Y</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="120" rx="24" fill="#F8F2FF"/>
+  <circle cx="60" cy="60" r="38" fill="#8A6FE8"/>
+  <path d="M72 60C72 68.8366 64.8366 76 56 76C47.1634 76 40 68.8366 40 60C40 51.1634 47.1634 44 56 44C56.3376 44 56.6727 44.0104 57.0049 44.031L52 52H60L55 60H72Z" fill="white"/>
+  <text x="118" y="48" fill="#1C1C1E" font-family="Arial, sans-serif" font-size="22" font-weight="700">STUDIO</text>
+  <text x="118" y="77" fill="#8A6FE8" font-family="Arial, sans-serif" font-size="22" font-weight="700">WABI SABI</text>
+</svg>

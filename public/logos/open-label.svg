@@ -1,0 +1,7 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="120" rx="24" fill="#FFF7F0"/>
+  <rect x="20" y="20" width="80" height="80" rx="18" fill="#F07030"/>
+  <path d="M47 61L63 45L79 61L63 77L47 61Z" stroke="white" stroke-width="8"/>
+  <text x="122" y="56" fill="#1C1C1E" font-family="Arial, sans-serif" font-size="26" font-weight="700">OPEN</text>
+  <text x="122" y="84" fill="#F07030" font-family="Arial, sans-serif" font-size="22" font-weight="700">LABEL</text>
+</svg>

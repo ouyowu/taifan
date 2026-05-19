@@ -1,0 +1,7 @@
+<svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="120" rx="24" fill="#EEF5FF"/>
+  <circle cx="58" cy="60" r="38" fill="#4A90D9"/>
+  <path d="M48 43L77 60L48 77V43Z" fill="white"/>
+  <text x="112" y="54" fill="#1C1C1E" font-family="Arial, sans-serif" font-size="24" font-weight="700">DOMUNDI</text>
+  <text x="112" y="84" fill="#4A90D9" font-family="Arial, sans-serif" font-size="22" font-weight="700">TV</text>
+</svg>
