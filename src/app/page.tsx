@@ -20,6 +20,15 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 const posterTones = ["#fff4ee", "#e8f4ff", "#f0fff0", "#fff0f7"];
+const eventTypeLabels: Record<string, string> = {
+  fanmeeting: "见面会",
+  concert: "演唱会",
+  brand: "品牌活动",
+  broadcast: "直播",
+  variety: "综艺",
+  airport: "机场行程",
+  event: "活动",
+};
 
 const productTemplates = [
   { kind: "写真集", price: "¥299", badge: "NEW" },
@@ -387,7 +396,7 @@ export default async function HomePage() {
                           {event.city} · {event.venue}
                         </p>
                         <span className="mt-2 inline-block rounded-full bg-[#fff4ee] px-3 py-1 font-cn text-[11px] font-bold text-[#f07030]">
-                          {event.type}
+                          {eventTypeLabels[event.type] ?? event.type}
                         </span>
                       </Link>
                     ))}
