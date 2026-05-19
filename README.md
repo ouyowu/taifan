@@ -1,22 +1,82 @@
-# ThaiStar Bridge / 泰娱桥
+# 泰饭网 · taifan.club
 
-面向中国大陆粉丝的泰国娱乐信息聚合与服务平台 MVP。  
-当前重点能力：
+面向中文用户的泰娱追星入口站。  
+这个项目把 3 条主线放到同一个站里：
 
-- 泰国明星活动中文日历
-- 明星动态 news 中心
-- 官方来源巡检与 AI 整理
-- 后台内容管理与审核发布
-- 每日自动 news 候选生成
+- 艺人库
+- 活动日历
+- 动态内容与官方来源追踪
 
-## 当前技术栈
+现在这套站点已经支持：
+
+- 前台网站展示
+- 后台人工录入和审核
+- 官方来源试抓预览
+- Supabase 真实数据读取
+- 低成本人工运营模式
+
+## 现在的运营模式
+
+当前最稳的上线方式是：
+
+- 网站先上线
+- Supabase 接通
+- 后台人工运营
+- 先不开 AI 自动生成
+- 先不开 cron 自动跑
+
+也就是说，现在可以先用它做：
+
+- 手动新增艺人
+- 手动新增活动
+- 手动新增动态
+- 在后台先试抓官方来源
+- 审核后再发布到前台
+
+如果以后要打开自动候选生成，再补 AI key 就可以。
+
+## 主要能力
+
+### 前台
+
+- 首页内容导流
+- 艺人库 `/artists`
+- 活动日历 `/calendar`
+- 动态页 `/news`
+- 艺人详情页
+- 活动详情页
+- 服务页 `/services`
+- 商城页 `/shop`
+
+### 后台
+
+- 来源板试抓预览
+- 动态管理
+- 活动管理
+- 艺人管理
+- 服务请求队列
+- 候选内容审核
+
+### 数据与部署
+
+- Supabase
+- Vercel
+- `/api/health` 健康检查
+- 首发 SQL 建表与导入脚本
+
+## 技术栈
 
 - Next.js App Router
 - Tailwind CSS
 - shadcn/ui
 - Supabase
-- OpenAI / Claude / Gemini（按环境变量选择）
-- Vercel（部署与 cron）
+- Vercel
+
+可选 AI 提供方：
+
+- OpenAI
+- Anthropic
+- Gemini
 
 ## 本地运行
 
@@ -33,63 +93,76 @@ npm install
 npm run dev
 ```
 
-构建验证：
+构建检查：
 
 ```bash
 npm run lint
 npx next build --webpack
 ```
 
-## 关键文档
+## 上线前最关键的几件事
 
-- [语言展示规则](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/language-display-guidelines.md>)
-- [Vercel 每日 News 自动化部署说明](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/vercel-daily-news-deploy.md>)
-- [上线操作清单](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/launch-checklist.md>)
-- [当前上线缺项](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/deploy-readiness-now.md>)
-- [taifan.club 上线顺序](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/taifan-club-launch-plan.md>)
-- [第一天试运营方案](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/day-one-ops-plan.md>)
-- [日常值班清单](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/daily-ops-cheatsheet.md>)
-- [cron 首次开启前检查](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/cron-first-run-preflight.md>)
-- [Claude 最新整站复查包](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/claude-full-review-refresh.md>)
-- [四周执行计划](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/week-plan.md>)
+1. Supabase 表结构已创建
+2. 首发内容已导入
+3. Vercel 环境变量已配置
+4. `/api/health` 至少 `siteUrl / publicSupabase / adminSupabase` 为 `ok`
+5. 前台首页、艺人库、动态页已经能读到真实数据
 
-## 当前内容流
+## 推荐阅读顺序
 
-1. 官方来源巡检
-2. 抓取正文
-3. AI 生成中文摘要 / 提取内容
-4. 自动写入 daily news 候选
-5. 后台审核
-6. 发布到前台 news 板块
+### 如果你要上线
 
-## 每日自动 News
+- [当前上线缺项](docs/deploy-readiness-now.md)
+- [上线操作清单](docs/launch-checklist.md)
+- [taifan.club 上线顺序](docs/taifan-club-launch-plan.md)
+- [cron 首次开启前检查](docs/cron-first-run-preflight.md)
 
-当前支持两种触发方式：
+### 如果你要人工运营
 
-- 后台手动触发：`/api/admin/newsroom/daily`
-- Vercel 定时触发：`/api/cron/daily-news`
+- [没有 AI key 时的后台日常流程](docs/manual-ops-no-ai.md)
+- [第一天试运营方案](docs/day-one-ops-plan.md)
+- [日常值班清单](docs/daily-ops-cheatsheet.md)
+- [来源层巡检清单](docs/source-ops-checklist.md)
 
-上线前健康检查入口：
+### 如果你要导入数据库
 
-- `/api/health`
+- [Supabase 首发导入说明](docs/supabase-first-launch-import-guide.md)
+- [Supabase 首发 SQL 数据包](docs/supabase-first-launch-seed.sql)
+- [初始化 migration](supabase/migrations/20260516_init.sql)
 
-自动生成内容默认会进入：
+### 如果你要继续审查前台或交接给别人
 
-- `待发布`
+- [Claude 最新整站复查包](docs/claude-full-review-refresh.md)
+- [Claude 最新代码总包](docs/claude-codebase-bundle.xml)
+- [语言展示规则](docs/language-display-guidelines.md)
 
-不会直接公开到前台，需要后台确认后再发布。
+## 当前项目状态
 
-## 部署前最重要的事
+目前项目已经不是纯 demo：
 
-不要只看代码是否能跑，还要确认：
+- 前台结构已成型
+- 真实 Supabase 已接通
+- 首发艺人 / 活动 / 动态已入库
+- 后台人工运营链路可用
 
-- Supabase migration 已执行
-- `SUPABASE_SERVICE_ROLE_KEY` 已配置
-- 至少一个 AI key 已配置
-- `CRON_SECRET` 已配置
-- Vercel production 部署成功
-- 后台能筛到 `只看待发布` + `只看自动整理`
+当前仍然属于更稳的阶段：
 
-完整步骤见：
+- 先人工运营
+- 再决定是否开启 AI 自动整理
 
-- [上线操作清单](</Users/ouyowu/Documents/泰国娱乐圈项目/docs/launch-checklist.md>)
+## 备注
+
+这个仓库里同时包含：
+
+- 前台页面
+- 后台页面
+- 来源适配逻辑
+- 上线文档
+- 首发 SQL
+
+如果你只是想继续改前台视觉，优先看：
+
+- `src/app/`
+- `src/components/layout/`
+- `src/components/artist-search.tsx`
+- `src/components/calendar-filter.tsx`
