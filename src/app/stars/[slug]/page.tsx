@@ -1,27 +1,21 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { format } from "date-fns";
-import { zhCN } from "date-fns/locale";
+import { notFound } from "next/navigation";
+import {
+  CalendarRange,
+  FileText,
+  MapPin,
+  Radio,
+  Search,
+  Sparkles,
+  Tags,
+  UserRound,
+} from "lucide-react";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { siteConfig } from "@/lib/constants";
 import { getStarDetail } from "@/lib/data";
 import { buildPageMetadata } from "@/lib/metadata";
-
-const COMPANY_ACCENT: Record<string, string> = {
-  "GMMTV": "#f07030",
-  "Cloud 9 Entertainment": "#f07030",
-  "One31 / independent brand work": "#4a90d9",
-  "DOMUNDI TV": "#9b6eff",
-  "OPEN LABEL": "#4caf78",
-  "BeOnCloud": "#f07030",
-  "MEMINDY": "#e84040",
-  "Studio Wabi Sabi": "#4a90d9",
-  "Billkin Entertainment": "#f07030",
-  "PP Krit Entertainment": "#4caf78",
-  "CHANGE ARTIST": "#9b6eff",
-};
 
 const TYPE_LABEL: Record<string, string> = {
   fanmeeting: "见面会",
@@ -41,10 +35,11 @@ export default async function StarProfilePage({
   const detail = await getStarDetail(slug);
 
   if (!detail) notFound();
+
   const { star, events: relatedEvents, news: relatedNews } = detail;
-  const mustReadNews = relatedNews.slice(0, 3);
   const latestNews = relatedNews[0];
   const nextEvent = relatedEvents[0];
+  const mustReadNews = relatedNews.slice(0, 3);
   const personStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -56,262 +51,319 @@ export default async function StarProfilePage({
     url: `${siteConfig.siteUrl}/stars/${star.slug}`,
   };
 
-  const accent = COMPANY_ACCENT[star.agency] ?? "#f07030";
-
   return (
     <SiteShell>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+      />
 
-      {/* ── HERO BANNER — text only ── */}
-      <section className="relative w-full overflow-hidden"
-        style={{ background: `linear-gradient(135deg, #0f0f10 0%, ${accent}28 100%)`, minHeight: "clamp(320px, 50vh, 520px)" }}>
-        {/* Decorative initial */}
-        <div className="absolute right-0 top-0 select-none font-en font-black leading-none opacity-[0.05] text-white"
-          style={{ fontSize: "clamp(240px, 35vw, 480px)", lineHeight: 1 }}>
-          {star.nameEn.charAt(0)}
-        </div>
-        <div className="relative page-shell mx-auto max-w-[1440px] flex flex-col justify-between py-12 md:py-16" style={{ minHeight: "inherit" }}>
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
-            <div>
-              <div className="mb-4 flex flex-wrap items-center gap-2">
-                <span className="rounded-full px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-white"
-                  style={{ backgroundColor: accent }}>
-                  {star.agency}
+      <section className="page-shell mx-auto max-w-[1180px] py-10 md:py-14">
+        <div className="grid gap-8 border-b border-[#ece7df] pb-8 md:grid-cols-[1.1fr_0.9fr] md:gap-12 md:pb-10">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="editorial-icon-badge">
+                <UserRound size={14} />
+              </span>
+              <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">
+                Artist profile
+              </span>
+            </div>
+            <h1 className="mt-4 font-sans text-[36px] font-black leading-[0.95] tracking-[-0.04em] text-[#111111] md:text-[68px]">
+              {star.nameEn}
+            </h1>
+            <p className="font-cn mt-3 text-[18px] font-bold text-[#6e6e73] md:text-[22px]">
+              {star.nameCn}
+            </p>
+            <p className="font-cn mt-5 max-w-[720px] text-[15px] leading-[1.95] text-[#3c3c43]">
+              {star.bio}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <span className="ui-chip">{star.agency}</span>
+              <span className="ui-chip">{star.baseCity}</span>
+              {star.fandomName ? <span className="ui-chip">{star.fandomName}</span> : null}
+              {star.spotlight.slice(0, 3).map((item) => (
+                <span key={item} className="ui-chip">
+                  {item}
                 </span>
-                {star.fandomName && (
-                  <span className="rounded-full border border-white/30 px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-white/70">
-                    {star.fandomName}
-                  </span>
-                )}
-              </div>
-              <h1 className="font-en font-black leading-[0.92] tracking-[-0.04em] text-white"
-                  style={{ fontSize: "clamp(48px, 8vw, 96px)" }}>
-                {star.nameEn}
-              </h1>
-              <p className="font-cn mt-3 text-[20px] font-bold text-white/60">{star.nameCn}</p>
-            </div>
-            <div className="flex items-center gap-5 rounded-[18px] bg-white/10 px-6 py-4 backdrop-blur-md w-fit">
-              <div className="text-center">
-                <p className="font-en text-[32px] font-black text-white leading-none">{relatedEvents.length}</p>
-                <p className="font-cn text-[11px] text-white/60 mt-1">活动</p>
-              </div>
-              <div className="h-10 w-px bg-white/20" />
-              <div className="text-center">
-                <p className="font-en text-[32px] font-black text-white leading-none">{relatedNews.length}</p>
-                <p className="font-cn text-[11px] text-white/60 mt-1">动态</p>
-              </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── QUICK TAGS BAR ── */}
-      <section className="border-b border-[#e8e8e8] bg-white">
-        <div className="page-shell mx-auto max-w-[1440px] py-5">
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="rounded-full border border-[#e8e8e8] bg-[#fafafa] px-4 py-2">
-              <span className="font-sans text-[10px] uppercase tracking-[0.1em] text-[#aeaeb2] mr-2">驻地</span>
-              <span className="font-cn text-[13px] font-bold text-[#1c1c1e]">{star.baseCity}</span>
+          <aside className="space-y-3">
+            <div className="rounded-[22px] border border-[#ece7df] bg-white p-5">
+              <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-[#a56a44]">
+                At a glance
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-[16px] bg-[#faf7f3] p-4">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#a56a44]">
+                    Updates
+                  </p>
+                  <p className="mt-2 font-en text-[24px] font-black text-[#111111]">
+                    {relatedNews.length}
+                  </p>
+                </div>
+                <div className="rounded-[16px] bg-[#faf7f3] p-4">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#a56a44]">
+                    Events
+                  </p>
+                  <p className="mt-2 font-en text-[24px] font-black text-[#111111]">
+                    {relatedEvents.length}
+                  </p>
+                </div>
+                <div className="rounded-[16px] bg-[#fff4ee] p-4">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#f07030]">
+                    Base
+                  </p>
+                  <p className="mt-2 font-cn text-[15px] font-bold text-[#111111]">
+                    {star.baseCity}
+                  </p>
+                </div>
+              </div>
             </div>
-            {star.spotlight.slice(0, 2).map((s) => (
-              <div key={s} className="rounded-full bg-[#fff4ee] px-4 py-2">
-                <span className="font-cn text-[13px] font-bold text-[#f07030]">{s}</span>
-              </div>
-            ))}
-            {star.tags.slice(0, 4).map((tag) => (
-              <div key={tag} className="rounded-full border border-[#e8e8e8] bg-[#fafafa] px-4 py-2">
-                <span className="font-cn text-[13px] text-[#6e6e73]">{tag}</span>
-              </div>
-            ))}
-          </div>
+            <div className="editorial-inline-note">
+              <Sparkles size={14} />
+              <span>先看最近动态和下一场活动，再决定是否继续补完整时间线。</span>
+            </div>
+          </aside>
         </div>
-      </section>
 
-      {/* ── MAIN LAYOUT ── */}
-      <section className="page-shell mx-auto max-w-[1440px] py-10 md:py-14">
-        <div className="grid gap-8 lg:grid-cols-[1fr_340px] lg:items-start lg:gap-12">
-
-          {/* LEFT COLUMN */}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px] lg:gap-10">
           <div className="space-y-8">
-
-            {/* Bio card */}
-            <div className="rounded-[24px] border border-[#e8e8e8] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.07)] md:p-8">
-              <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">About this star</p>
-              <p className="font-cn mt-4 text-[15px] leading-[1.9] text-[#6e6e73] md:text-[16px]">{star.bio}</p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-[14px] bg-[#fafafa] p-4">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.12em] text-[#aeaeb2]">Use this name</p>
-                  <p className="font-en mt-2 text-[14px] font-bold text-[#1c1c1e]">{star.nameEn}</p>
-                </div>
-                <div className="rounded-[14px] bg-[#fff4ee] p-4">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.12em] text-[#f07030]">Agency</p>
-                  <p className="font-cn mt-2 text-[14px] font-bold text-[#1c1c1e]">{star.agency}</p>
-                </div>
-                <div className="rounded-[14px] bg-[#fafafa] p-4">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.12em] text-[#aeaeb2]">Focus</p>
-                  <p className="font-cn mt-2 text-[13px] font-bold text-[#1c1c1e]">{star.spotlight.slice(0, 1).join("")}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Profile facts */}
             {star.profileFacts?.length ? (
-              <div className="rounded-[24px] border border-[#e8e8e8] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.07)] md:p-8">
-                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030] mb-4">Profile</p>
-                <div className="grid gap-2 sm:grid-cols-2">
+              <section>
+                <div className="flex items-center gap-2">
+                  <span className="editorial-icon-badge">
+                    <FileText size={14} />
+                  </span>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">
+                    Profile facts
+                  </p>
+                </div>
+                <div className="mt-4 grid gap-3 md:grid-cols-2">
                   {star.profileFacts.map((fact) => (
-                    <div key={fact} className="rounded-[12px] bg-[#fafafa] px-4 py-3">
-                      <p className="font-cn text-[13px] text-[#1c1c1e]">{fact}</p>
+                    <div
+                      key={fact}
+                      className="rounded-[18px] border border-[#ece7df] bg-white px-4 py-4"
+                    >
+                      <p className="font-cn text-[14px] leading-[1.8] text-[#3c3c43]">{fact}</p>
                     </div>
                   ))}
                 </div>
-              </div>
+              </section>
             ) : null}
 
-            {/* Must read */}
-            {mustReadNews.length ? (
-              <div>
-                <div className="mb-4 flex items-center gap-2">
-                  <div className="h-[2px] w-5 rounded bg-[#f07030]" />
-                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">Editor&apos;s picks</p>
+            {star.tags?.length ? (
+              <section>
+                <div className="flex items-center gap-2">
+                  <span className="editorial-icon-badge">
+                    <Tags size={14} />
+                  </span>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">
+                    What to track now
+                  </p>
                 </div>
-                <h2 className="font-sans text-[28px] font-extrabold tracking-[-0.02em] text-[#1c1c1e] mb-5 md:text-[34px]">Must read 3.</h2>
-                <div className="space-y-3">
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {star.tags.map((tag) => (
+                    <span key={tag} className="ui-chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {mustReadNews.length ? (
+              <section>
+                <div className="flex items-center gap-2">
+                  <span className="editorial-icon-badge">
+                    <Radio size={14} />
+                  </span>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">
+                    Editor&apos;s picks
+                  </p>
+                </div>
+                <h2 className="mt-3 font-sans text-[28px] font-black tracking-[-0.03em] text-[#111111] md:text-[36px]">
+                  Must read 3
+                </h2>
+                <div className="mt-5 space-y-3">
                   {mustReadNews.map((item, index) => (
-                    <Link key={item.slug} href={`/news/${item.slug}`}
-                      className="flex gap-4 rounded-[20px] border border-[#e8e8e8] bg-white p-4 shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(240,112,48,0.15)]">
-                      <div className="relative h-[64px] w-[64px] shrink-0 overflow-hidden rounded-[14px] bg-[#f07030] flex items-center justify-center">
-                        <span className="font-en text-[22px] font-black text-white">0{index + 1}</span>
+                    <Link
+                      key={item.slug}
+                      href={`/news/${item.slug}`}
+                      className="flex items-start gap-4 rounded-[22px] border border-[#ece7df] bg-white p-5 transition hover:-translate-y-0.5"
+                    >
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#fff4ee] font-en text-[16px] font-black text-[#f07030]">
+                        0{index + 1}
                       </div>
-                      <div className="flex flex-col justify-center min-w-0">
-                        <p className="font-cn text-[14px] font-bold leading-[1.65] text-[#1c1c1e]">{item.excerpt}</p>
-                        <p className="font-en mt-2 text-[10px] text-[#aeaeb2] truncate">{item.title}</p>
+                      <div className="min-w-0">
+                        <p className="font-cn text-[14px] font-bold leading-[1.8] text-[#111111]">
+                          {item.excerpt}
+                        </p>
+                        <p className="mt-2 font-en text-[11px] text-[#6e6e73]">{item.title}</p>
                       </div>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </section>
             ) : null}
 
-            {/* Events */}
             {relatedEvents.length ? (
-              <div>
-                <div className="mb-4 flex items-center gap-2">
-                  <div className="h-[2px] w-5 rounded bg-[#f07030]" />
-                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">Schedule</p>
+              <section>
+                <div className="flex items-center gap-2">
+                  <span className="editorial-icon-badge">
+                    <CalendarRange size={14} />
+                  </span>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">
+                    Upcoming schedule
+                  </p>
                 </div>
-                <h2 className="font-sans text-[28px] font-extrabold tracking-[-0.02em] text-[#1c1c1e] mb-5 md:text-[34px]">近期活动</h2>
-                <div className="space-y-3">
+                <div className="mt-5 space-y-3">
                   {relatedEvents.map((event) => (
-                    <Link key={event.slug} href={`/events/${event.slug}`}
-                      className="flex items-center gap-4 rounded-[20px] border border-[#e8e8e8] bg-white p-4 shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition hover:-translate-y-0.5">
-                      <div className="w-[56px] shrink-0 rounded-[12px] bg-[#fff4ee] py-3 text-center">
-                        <p className="font-en text-[24px] font-black leading-none text-[#f07030]">
-                          {format(new Date(event.startsAt), "dd")}
+                    <Link
+                      key={event.slug}
+                      href={`/events/${event.slug}`}
+                      className="grid gap-3 rounded-[22px] border border-[#ece7df] bg-white p-5 transition hover:-translate-y-0.5 md:grid-cols-[92px_1fr]"
+                    >
+                      <div className="rounded-[18px] bg-[#fff4ee] px-4 py-4 text-center">
+                        <p className="font-en text-[28px] font-black leading-none text-[#f07030]">
+                          {event.startsAt.slice(8, 10)}
                         </p>
-                        <p className="font-en text-[9px] uppercase tracking-[0.1em] text-[#f07030] mt-1">
-                          {format(new Date(event.startsAt), "MMM", { locale: zhCN })}
+                        <p className="mt-1 font-en text-[10px] uppercase tracking-[0.12em] text-[#a56a44]">
+                          {event.startsAt.slice(0, 7)}
                         </p>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-cn text-[14px] font-bold text-[#1c1c1e] leading-[1.5]">{event.summary}</p>
-                        <p className="font-en mt-1 text-[10px] text-[#aeaeb2] truncate">{event.title}</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          <span className="font-cn rounded-full bg-[#fafafa] border border-[#e8e8e8] px-3 py-1 text-[11px] text-[#6e6e73]">{event.city}</span>
-                          <span className="font-cn rounded-full bg-[#fff4ee] px-3 py-1 text-[11px] text-[#f07030]">
-                            {TYPE_LABEL[event.type] ?? event.type}
-                          </span>
+                      <div>
+                        <p className="font-cn text-[14px] font-bold leading-[1.8] text-[#111111]">
+                          {event.summary}
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <span className="ui-chip">{event.city}</span>
+                          <span className="ui-chip">{event.venue}</span>
+                          <span className="ui-chip">{TYPE_LABEL[event.type] ?? event.type}</span>
                         </div>
                       </div>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </section>
             ) : null}
 
-            {/* News list */}
             {relatedNews.length ? (
-              <div>
-                <div className="mb-4 flex items-center gap-2">
-                  <div className="h-[2px] w-5 rounded bg-[#f07030]" />
-                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">Latest posts</p>
+              <section>
+                <div className="flex items-center gap-2">
+                  <span className="editorial-icon-badge">
+                    <FileText size={14} />
+                  </span>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">
+                    Latest posts
+                  </p>
                 </div>
-                <h2 className="font-sans text-[28px] font-extrabold tracking-[-0.02em] text-[#1c1c1e] mb-5 md:text-[34px]">近期动态</h2>
-                <div className="space-y-3">
+                <div className="mt-5 space-y-3">
                   {relatedNews.map((item) => (
-                    <Link key={item.slug} href={`/news/${item.slug}`}
-                      className="block rounded-[20px] border border-[#e8e8e8] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.07)] transition hover:-translate-y-0.5">
-                      <p className="font-cn text-[14px] font-bold leading-[1.65] text-[#1c1c1e]">{item.excerpt}</p>
-                      <p className="font-en mt-2 text-[10px] text-[#aeaeb2]">{item.title}</p>
+                    <Link
+                      key={item.slug}
+                      href={`/news/${item.slug}`}
+                      className="block rounded-[22px] border border-[#ece7df] bg-white p-5 transition hover:-translate-y-0.5"
+                    >
+                      <p className="font-cn text-[14px] font-bold leading-[1.8] text-[#111111]">
+                        {item.excerpt}
+                      </p>
+                      <p className="mt-2 font-en text-[11px] text-[#6e6e73]">{item.title}</p>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </section>
             ) : null}
           </div>
 
-          {/* RIGHT SIDEBAR — sticky */}
-          <div className="space-y-4 lg:sticky lg:top-[88px]">
-            <div className="rounded-[20px] border border-[#e8e8e8] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
-              <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#f07030]">Read this first</p>
-              <h3 className="font-sans mt-2 text-[20px] font-extrabold tracking-[-0.02em] text-[#1c1c1e]">Latest update.</h3>
+          <aside className="space-y-3 lg:sticky lg:top-[92px]">
+            <div className="rounded-[22px] border border-[#ece7df] bg-white p-5">
+              <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-[#a56a44]">
+                Latest update
+              </p>
               {latestNews ? (
-                <Link href={`/news/${latestNews.slug}`} className="mt-4 block rounded-[14px] bg-[#fafafa] p-4 transition hover:bg-[#fff4ee]">
-                  <p className="font-cn text-[13px] font-bold leading-[1.7] text-[#1c1c1e]">{latestNews.excerpt}</p>
-                  <p className="font-en mt-2 text-[10px] text-[#aeaeb2]">{latestNews.title}</p>
+                <Link href={`/news/${latestNews.slug}`} className="mt-3 block rounded-[16px] bg-[#faf7f3] p-4">
+                  <p className="font-cn text-[13px] font-bold leading-[1.8] text-[#111111]">
+                    {latestNews.excerpt}
+                  </p>
                 </Link>
               ) : (
-                <div className="mt-4 rounded-[14px] bg-[#fafafa] p-4">
-                  <p className="font-cn text-[13px] leading-[1.8] text-[#6e6e73]">暂无最新动态。</p>
-                </div>
+                <p className="mt-3 font-cn text-[13px] leading-[1.8] text-[#6e6e73]">暂无最新动态。</p>
               )}
             </div>
 
-            <div className="rounded-[20px] border border-[#e8e8e8] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
-              <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#f07030]">Catch this next</p>
-              <h3 className="font-sans mt-2 text-[20px] font-extrabold tracking-[-0.02em] text-[#1c1c1e]">Next event.</h3>
+            <div className="rounded-[22px] border border-[#ece7df] bg-white p-5">
+              <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-[#a56a44]">
+                Next event
+              </p>
               {nextEvent ? (
-                <Link href={`/events/${nextEvent.slug}`} className="mt-4 block rounded-[14px] bg-[#fafafa] p-4 transition hover:bg-[#fff4ee]">
-                  <p className="font-cn text-[13px] font-bold leading-[1.7] text-[#1c1c1e]">{nextEvent.summary}</p>
-                  <p className="font-en mt-2 text-[10px] text-[#aeaeb2]">{nextEvent.title}</p>
+                <Link href={`/events/${nextEvent.slug}`} className="mt-3 block rounded-[16px] bg-[#fff4ee] p-4">
+                  <p className="font-cn text-[13px] font-bold leading-[1.8] text-[#111111]">
+                    {nextEvent.summary}
+                  </p>
                 </Link>
               ) : (
-                <div className="mt-4 rounded-[14px] bg-[#fafafa] p-4">
-                  <p className="font-cn text-[13px] leading-[1.8] text-[#6e6e73]">暂无近期活动。</p>
-                </div>
+                <p className="mt-3 font-cn text-[13px] leading-[1.8] text-[#6e6e73]">暂无近期活动。</p>
               )}
             </div>
 
-            <div className="rounded-[20px] border border-[#e8e8e8] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
-              <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#f07030]">Search with these names</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {[star.nameEn, star.nameCn, ...(star.spotlight ?? []).slice(0, 1)].filter(Boolean).map((name) => (
-                  <span key={name} className="rounded-full border border-[#e8e8e8] px-3 py-1.5 font-cn text-[12px] text-[#1c1c1e]">{name}</span>
-                ))}
+            <div className="rounded-[22px] border border-[#ece7df] bg-white p-5">
+              <div className="flex items-center gap-2">
+                <span className="editorial-icon-badge">
+                  <Search size={14} />
+                </span>
+                <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-[#a56a44]">
+                  Search with these names
+                </p>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {[star.nameEn, star.nameCn, ...(star.spotlight ?? []).slice(0, 1)]
+                  .filter(Boolean)
+                  .map((name) => (
+                    <span key={name} className="ui-chip">
+                      {name}
+                    </span>
+                  ))}
               </div>
             </div>
 
-            {star.tags?.length ? (
-              <div className="rounded-[20px] border border-[#e8e8e8] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
-                <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#f07030]">What to track now</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {star.tags.map((tag) => (
-                    <span key={tag} className="rounded-full border border-[#e8e8e8] bg-[#fafafa] px-3 py-1.5 font-cn text-[12px] text-[#6e6e73]">{tag}</span>
-                  ))}
-                </div>
+            <div className="rounded-[22px] border border-[#ece7df] bg-white p-5">
+              <div className="flex items-center gap-2">
+                <span className="editorial-icon-badge">
+                  <MapPin size={14} />
+                </span>
+                <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-[#a56a44]">
+                  How to use this page
+                </p>
               </div>
-            ) : null}
-          </div>
+              <div className="mt-4 space-y-3 font-cn text-[13px] leading-[1.8] text-[#6e6e73]">
+                <p>先看人物简介和资料事实，再决定这位艺人的主追踪线是什么。</p>
+                <p>如果你只想快速跟进，优先看最新动态和下一场活动。</p>
+                <p>如果你准备自己继续搜原始物料，保留英文名和公司名最有用。</p>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
     </SiteShell>
   );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const detail = await getStarDetail(slug);
-  if (!detail) return buildPageMetadata({ title: "明星资料", description: "查看泰国明星的中文资料", path: `/stars/${slug}` });
+  if (!detail)
+    return buildPageMetadata({
+      title: "明星资料",
+      description: "查看泰国明星的中文资料",
+      path: `/stars/${slug}`,
+    });
   const { star, events, news } = detail;
   return buildPageMetadata({
     title: `${star.nameEn} | 明星资料`,
