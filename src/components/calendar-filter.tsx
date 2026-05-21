@@ -1,19 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
 import type { Event, Star } from "@/types/domain";
-
-const TYPE_LABEL: Record<string, string> = {
-  fanmeeting: "见面会",
-  concert: "演唱会",
-  brand: "品牌活动",
-  broadcast: "直播",
-  variety: "综艺",
-  event: "活动",
-};
+import { EVENT_TYPE_LABELS } from "@/lib/constants";
 
 const MONTH_NAMES = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
 
@@ -49,6 +41,18 @@ export function CalendarFilter({ events, stars }: CalendarFilterProps) {
   const [selectedStar, setSelectedStar] = useState<string>("all");
   const [starSearch, setStarSearch] = useState("");
   const [showStarPicker, setShowStarPicker] = useState(false);
+  const starPickerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showStarPicker) return;
+    function handleClickOutside(e: MouseEvent) {
+      if (starPickerRef.current && !starPickerRef.current.contains(e.target as Node)) {
+        setShowStarPicker(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showStarPicker]);
 
   const starsMap = useMemo(() => new Map(stars.map((s) => [s.slug, s])), [stars]);
 
@@ -231,7 +235,7 @@ export function CalendarFilter({ events, stars }: CalendarFilterProps) {
         {/* Star picker */}
         <div className="rounded-[20px] border border-[#e8e8e8] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
           <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-[#f07030] mb-3">选艺人</p>
-          <div className="relative">
+          <div className="relative" ref={starPickerRef}>
             <button
               onClick={() => setShowStarPicker(!showStarPicker)}
               className="flex w-full items-center gap-3 rounded-[12px] border border-[#e8e8e8] bg-[#fafafa] px-3 py-2.5 text-left transition hover:border-[#f07030]"
@@ -410,7 +414,7 @@ export function CalendarFilter({ events, stars }: CalendarFilterProps) {
                                 </span>
                               ) : null}
                               <span className="font-cn rounded-full bg-[#fff4ee] px-2.5 py-0.5 text-[10px] text-[#f07030] font-bold">
-                                {TYPE_LABEL[event.type] ?? event.type}
+                                {EVENT_TYPE_LABELS[event.type] ?? event.type}
                               </span>
                               {event.ticketStatus ? (
                                 <span className="font-cn rounded-full border border-[#e8e8e8] bg-[#fafafa] px-2.5 py-0.5 text-[10px] text-[#6e6e73]">

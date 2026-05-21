@@ -4,18 +4,13 @@ import { notFound } from "next/navigation";
 import { CalendarRange, FileText, ListTree, MapPin, Radio, Search, Sparkles, Tags, UserRound } from "lucide-react";
 
 import { SiteShell } from "@/components/layout/site-shell";
-import { siteConfig } from "@/lib/constants";
-import { getStarDetail } from "@/lib/data";
+import { EVENT_TYPE_LABELS, siteConfig } from "@/lib/constants";
+import { getStarDetail, getStaticStarParams } from "@/lib/data";
 import { buildPageMetadata } from "@/lib/metadata";
 
-const TYPE_LABEL: Record<string, string> = {
-  fanmeeting: "见面会",
-  concert: "演唱会",
-  brand: "品牌活动",
-  broadcast: "直播",
-  variety: "综艺",
-  event: "活动",
-};
+export function generateStaticParams() {
+  return getStaticStarParams();
+}
 
 export default async function StarProfilePage({
   params,
@@ -232,7 +227,7 @@ export default async function StarProfilePage({
                   {star.profileNotes.map((note, index) => (
                     <div key={note} className="grid gap-3 rounded-[22px] border border-[#ece7df] bg-white p-5 md:grid-cols-[48px_1fr]">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#faf7f3] font-en text-[14px] font-black text-[#a56a44]">
-                        0{index + 1}
+                        {String(index + 1).padStart(2, "0")}
                       </div>
                       <p className="font-cn text-[14px] leading-[1.9] text-[#3c3c43]">{note}</p>
                     </div>
@@ -330,7 +325,7 @@ export default async function StarProfilePage({
                       className="flex items-start gap-4 rounded-[22px] border border-[#ece7df] bg-white p-5 transition hover:-translate-y-0.5"
                     >
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#fff4ee] font-en text-[16px] font-black text-[#f07030]">
-                        0{index + 1}
+                        {String(index + 1).padStart(2, "0")}
                       </div>
                       <div className="min-w-0">
                         <p className="font-cn text-[14px] font-bold leading-[1.8] text-[#111111]">
@@ -376,7 +371,7 @@ export default async function StarProfilePage({
                         <div className="mt-3 flex flex-wrap gap-2">
                           <span className="ui-chip">{event.city}</span>
                           <span className="ui-chip">{event.venue}</span>
-                          <span className="ui-chip">{TYPE_LABEL[event.type] ?? event.type}</span>
+                          <span className="ui-chip">{EVENT_TYPE_LABELS[event.type] ?? event.type}</span>
                         </div>
                       </div>
                     </Link>

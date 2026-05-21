@@ -233,6 +233,35 @@ export async function listServices(): Promise<ServiceItem[]> {
   return mockServices;
 }
 
+function buildNewsDetailFromMock(slug: string, allNews: NewsItem[]) {
+  const news = mockNews.find((item) => item.slug === slug);
+  if (!news) return null;
+  const stars = mockStars.filter((star) => news.relatedStars.includes(star.slug));
+  const relatedEvents = mockEvents.filter((event) =>
+    event.starSlugs.some((starSlug) => news.relatedStars.includes(starSlug)),
+  );
+  const relatedNews = mockNews.filter(
+    (item) =>
+      item.slug !== slug &&
+      item.relatedStars.some((starSlug) => news.relatedStars.includes(starSlug)),
+  );
+  return {
+    news: {
+      ...news,
+      editorialMode: news.editorialMode ?? detectNewsEditorialMode({ body_md: news.bodyMd ?? null, slug: news.slug } as NewsRow),
+      reviewStatus: (news.reviewStatus ?? "published") as "draft" | "reviewed" | "published" | "rejected",
+      bodyMd:
+        news.bodyMd ??
+        `${news.excerpt}\n\n这是一条站内中文整理稿，当前优先用于帮助新粉快速理解活动重点。正式追行程、抢票或核对品牌官宣前，建议再结合官方账号、主办海报或票务平台信息二次确认。`,
+    },
+    stars,
+    relatedEvents,
+    relatedNews,
+    previousNews: findAdjacentNews(allNews, slug, -1),
+    nextNews: findAdjacentNews(allNews, slug, 1),
+  };
+}
+
 export async function getNewsDetail(slug: string) {
   noStore();
   const allNews = await listNews();
@@ -240,32 +269,7 @@ export async function getNewsDetail(slug: string) {
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
     if (!allowMockFallback) return null;
-    const news = mockNews.find((item) => item.slug === slug);
-    if (!news) return null;
-    const stars = mockStars.filter((star) => news.relatedStars.includes(star.slug));
-    const relatedEvents = mockEvents.filter((event) =>
-      event.starSlugs.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    const relatedNews = mockNews.filter(
-      (item) =>
-        item.slug !== slug &&
-        item.relatedStars.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    return {
-      news: {
-        ...news,
-        editorialMode: news.editorialMode ?? detectNewsEditorialMode({ body_md: news.bodyMd ?? null, slug: news.slug } as NewsRow),
-        reviewStatus: news.reviewStatus ?? "published",
-        bodyMd:
-          news.bodyMd ??
-          `${news.excerpt}\n\n这是一条站内中文整理稿，当前优先用于帮助新粉快速理解活动重点。正式追行程、抢票或核对品牌官宣前，建议再结合官方账号、主办海报或票务平台信息二次确认。`,
-      },
-      stars,
-      relatedEvents,
-      relatedNews,
-      previousNews: findAdjacentNews(allNews, slug, -1),
-      nextNews: findAdjacentNews(allNews, slug, 1),
-    };
+    return buildNewsDetailFromMock(slug, allNews);
   }
 
   const { data, error } = await supabase
@@ -276,32 +280,7 @@ export async function getNewsDetail(slug: string) {
     .single();
   if (error || !data) {
     if (!allowMockFallback) return null;
-    const news = mockNews.find((item) => item.slug === slug);
-    if (!news) return null;
-    const stars = mockStars.filter((star) => news.relatedStars.includes(star.slug));
-    const relatedEvents = mockEvents.filter((event) =>
-      event.starSlugs.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    const relatedNews = mockNews.filter(
-      (item) =>
-        item.slug !== slug &&
-        item.relatedStars.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    return {
-      news: {
-        ...news,
-        editorialMode: news.editorialMode ?? detectNewsEditorialMode({ body_md: news.bodyMd ?? null, slug: news.slug } as NewsRow),
-        reviewStatus: news.reviewStatus ?? "published",
-        bodyMd:
-          news.bodyMd ??
-          `${news.excerpt}\n\n这是一条站内中文整理稿，当前优先用于帮助新粉快速理解活动重点。正式追行程、抢票或核对品牌官宣前，建议再结合官方账号、主办海报或票务平台信息二次确认。`,
-      },
-      stars,
-      relatedEvents,
-      relatedNews,
-      previousNews: findAdjacentNews(allNews, slug, -1),
-      nextNews: findAdjacentNews(allNews, slug, 1),
-    };
+    return buildNewsDetailFromMock(slug, allNews);
   }
 
   const row = data as NewsRow;
@@ -602,4 +581,16 @@ function prioritizeStars(items: Star[]) {
     const bRank = bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex;
     return aRank - bRank;
   });
+}
+
+export function getStaticStarParams() {
+  return mockStars.map((s) => ({ slug: s.slug }));
+}
+
+export function getStaticEventParams() {
+  return mockEvents.map((e) => ({ slug: e.slug }));
+}
+
+export function getStaticNewsParams() {
+  return mockNews.map((n) => ({ slug: n.slug }));
 }

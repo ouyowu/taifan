@@ -15,18 +15,13 @@ import {
 } from "lucide-react";
 
 import { SiteShell } from "@/components/layout/site-shell";
-import { siteConfig } from "@/lib/constants";
-import { getEventDetail } from "@/lib/data";
+import { EVENT_TYPE_LABELS, siteConfig } from "@/lib/constants";
+import { getEventDetail, getStaticEventParams } from "@/lib/data";
 import { buildPageMetadata } from "@/lib/metadata";
 
-const TYPE_LABEL: Record<string, string> = {
-  fanmeeting: "见面会",
-  concert: "演唱会",
-  brand: "品牌活动",
-  broadcast: "直播",
-  variety: "综艺",
-  event: "活动",
-};
+export function generateStaticParams() {
+  return getStaticEventParams();
+}
 
 export default async function EventDetailPage({
   params,
@@ -40,14 +35,14 @@ export default async function EventDetailPage({
 
   const { event, stars, relatedNews, previousEvent, nextEvent } = detail;
   const infoRows = [
-    { label: "活动类型", value: TYPE_LABEL[event.type] ?? event.type },
+    { label: "活动类型", value: EVENT_TYPE_LABELS[event.type] ?? event.type },
     { label: "城市", value: event.city },
     { label: "场馆", value: event.venue },
     { label: "来源", value: event.sourceLabel },
     { label: "票务状态", value: event.ticketStatus },
     { label: "开始时间", value: format(new Date(event.startsAt), "yyyy.M.d HH:mm", { locale: zhCN }) },
   ];
-  const typeName = TYPE_LABEL[event.type] ?? "活动";
+  const typeName = EVENT_TYPE_LABELS[event.type] ?? "活动";
   const planningNotes = [
     "先用活动原文标题「" + event.title + "」和场馆名「" + event.venue + "」去核对主办海报、票务页和地图位置。",
     "正式出发前优先确认 " + event.ticketStatus + "、入场时间、实名要求和现场是否有限制应援物。",
@@ -93,7 +88,6 @@ export default async function EventDetailPage({
       "@type": "Organization",
       name: event.sourceLabel,
     },
-    image: undefined,
     url: `${siteConfig.siteUrl}/events/${event.slug}`,
   };
 
@@ -114,7 +108,7 @@ export default async function EventDetailPage({
             <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-[#f07030]">
               Event briefing
             </span>
-            <span className="ui-chip">{TYPE_LABEL[event.type] ?? event.type}</span>
+            <span className="ui-chip">{EVENT_TYPE_LABELS[event.type] ?? event.type}</span>
             <span className="ui-chip">{event.city}</span>
           </div>
           <h1 className="mt-4 font-sans text-[34px] font-black leading-[0.98] tracking-[-0.04em] text-[#111111] md:text-[62px]">
@@ -459,6 +453,5 @@ export async function generateMetadata({
     title: event.title,
     description: `${event.summary} 地点 ${event.city} · ${event.venue}，票务状态：${event.ticketStatus}。中文整理说明 + 原文保留。`,
     path: `/events/${event.slug}`,
-    image: undefined,
   });
 }

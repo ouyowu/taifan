@@ -17,11 +17,11 @@ export function SiteFooter() {
             <p className="mt-3 max-w-[260px] font-cn text-[14px] leading-[1.8] text-white/40">
               taifan.club — 泰国顶级艺人一站式追星平台，官方来源优先，内容经过人工审核。
             </p>
-            <div className="mt-6 flex gap-2">
+            <div className="mt-6 flex gap-2" aria-hidden="true">
               {["📘", "📷", "🐦", "🌸", "🌐"].map((icon) => (
                 <span
                   key={icon}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-[15px] text-white transition-all hover:border-[#f07030] hover:bg-[#f07030]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-[15px] text-white/30"
                 >
                   {icon}
                 </span>

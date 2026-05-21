@@ -15,8 +15,12 @@ import {
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { siteConfig } from "@/lib/constants";
-import { getNewsDetail } from "@/lib/data";
+import { getNewsDetail, getStaticNewsParams } from "@/lib/data";
 import { buildPageMetadata } from "@/lib/metadata";
+
+export function generateStaticParams() {
+  return getStaticNewsParams();
+}
 
 export default async function NewsDetailPage({
   params,
@@ -48,7 +52,6 @@ export default async function NewsDetailPage({
       "@type": "Organization",
       name: "泰饭网 taifan.club",
     },
-    image: undefined,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteConfig.siteUrl}/news/${news.slug}`,
@@ -251,6 +254,5 @@ export async function generateMetadata({
     title: `${news.title} | 明星动态`,
     description: `${leadStar ? `${leadStar.nameEn} 相关动态：` : ""}${news.excerpt} ${news.sourceLabel ? `来源：${news.sourceLabel}。` : ""}中文快读 + 原文保留，方便继续搜索和核对。`,
     path: `/news/${news.slug}`,
-    image: undefined,
   });
 }

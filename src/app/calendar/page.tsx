@@ -8,22 +8,13 @@ import { CalendarFilter } from "@/components/calendar-filter";
 import { SiteShell } from "@/components/layout/site-shell";
 import { listEvents, listStars } from "@/lib/data";
 import { buildPageMetadata } from "@/lib/metadata";
+import { EVENT_TYPE_LABELS } from "@/lib/constants";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "活动日历",
   description: "查看泰国艺人活动日历，按日期和艺人筛选活动。",
   path: "/calendar",
 });
-
-const eventTypeLabels: Record<string, string> = {
-  fanmeeting: "见面会",
-  concert: "演唱会",
-  brand: "品牌活动",
-  broadcast: "直播",
-  variety: "综艺",
-  airport: "机场行程",
-  event: "活动",
-};
 
 export default async function CalendarPage() {
   await connection();
@@ -111,7 +102,7 @@ export default async function CalendarPage() {
                           {format(new Date(event.startsAt), "M 月 d 日 HH:mm", { locale: zhCN })} · {event.city}
                         </p>
                       </div>
-                      <span className="editorial-chip-muted">{eventTypeLabels[event.type] ?? "活动"}</span>
+                      <span className="editorial-chip-muted">{EVENT_TYPE_LABELS[event.type] ?? "活动"}</span>
                     </a>
                   ))}
                 </div>
