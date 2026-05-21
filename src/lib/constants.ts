@@ -25,7 +25,9 @@ export const siteConfig = {
   nav: [
     { href: "/", label: "首页" },
     { href: "/artists", label: "艺人" },
+    { href: "/news", label: "动态" },
     { href: "/calendar", label: "活动日历" },
+    { href: "/guides", label: "新粉攻略" },
     { href: "/services", label: "代办服务" },
     { href: "/shop", label: "周边商城" },
   ],

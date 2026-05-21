@@ -5,7 +5,7 @@ import { primarySourceShowcaseEntries } from "@/lib/source-showcase";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#1c1c1e] px-[80px] pt-[72px] md:px-8 sm:px-[18px]">
+    <footer className="bg-[#1c1c1e] px-[18px] pt-[72px] sm:px-8 lg:px-[80px]">
       <div className="mx-auto max-w-[1440px]">
         <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-[60px] border-b border-white/[0.08] pb-[60px] md:grid-cols-2 md:gap-10 sm:grid-cols-1">
           <div>

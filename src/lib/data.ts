@@ -157,7 +157,7 @@ export async function listEvents(): Promise<Event[]> {
           const star = Array.isArray(item.stars) ? item.stars[0] : item.stars;
           return star?.slug ?? "";
         }).filter(Boolean) ?? [],
-      ticketStatus: row.status,
+      ticketStatus: deriveTicketStatus(row.status),
       summary: row.summary ?? "",
       highlights: Object.values((row.ai_extracted as Record<string, string[] | string>) ?? {})
         .flat()
@@ -409,7 +409,7 @@ export async function listEventsForAdmin() {
     startsAt: row.starts_at,
     endsAt: row.ends_at ?? undefined,
     starSlugs: [],
-    ticketStatus: row.status,
+    ticketStatus: deriveTicketStatus(row.status),
     summary: row.summary ?? "",
     highlights: [],
     sourceLabel: deriveSourceMetadata(row.source_url ?? "").sourceLabel ?? row.source_url ?? "Supabase",
@@ -473,7 +473,7 @@ export async function getEventDetail(slug: string) {
     startsAt: data.starts_at,
     endsAt: data.ends_at ?? undefined,
     starSlugs: starItems.map((star) => star.slug),
-    ticketStatus: data.status,
+    ticketStatus: deriveTicketStatus(data.status),
     summary: data.summary ?? "",
     highlights: Object.values((data.ai_extracted as Record<string, string[] | string>) ?? {})
       .flat()
@@ -554,7 +554,7 @@ export async function getStarDetail(slug: string) {
     startsAt: row.starts_at,
     endsAt: row.ends_at ?? undefined,
     starSlugs: [slug],
-    ticketStatus: row.status,
+    ticketStatus: deriveTicketStatus(row.status),
     summary: row.summary ?? "",
     highlights: [],
     sourceLabel: deriveSourceMetadata(row.source_url ?? "").sourceLabel ?? row.source_url ?? "Supabase",
@@ -582,6 +582,16 @@ export async function getStarDetail(slug: string) {
   });
 
   return { star, events, news };
+}
+
+function deriveTicketStatus(status: Event["status"]): string {
+  const map: Record<Event["status"], string> = {
+    scheduled: "待开票",
+    rumor: "消息待确认",
+    selling: "开票中",
+    done: "活动已结束",
+  };
+  return map[status] ?? status;
 }
 
 function prioritizeStars(items: Star[]) {
