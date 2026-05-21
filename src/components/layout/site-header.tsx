@@ -54,12 +54,6 @@ export async function SiteHeader() {
             已审核内容
           </span>
           <Link
-            href="/shop"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-[#e8e8e8] px-5 py-2 text-[13px] font-bold text-[#1c1c1e] transition-all duration-200 hover:border-[#f07030] hover:text-[#f07030]"
-          >
-            🛒 购物车
-          </Link>
-          <Link
             href="/services"
             className="shadow-[0_8px_28px_rgba(240,112,48,0.22)] inline-flex items-center gap-2 rounded-full bg-[#f07030] px-5 py-2 text-[13px] font-bold text-white transition-all duration-200 hover:-translate-y-px hover:bg-[#d95820]"
           >

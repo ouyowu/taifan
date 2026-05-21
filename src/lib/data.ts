@@ -230,16 +230,30 @@ export async function listNewsForAdmin() {
 }
 
 export async function listServices(): Promise<ServiceItem[]> {
-  return mockServices;
+  noStore();
+  const supabase = await createSupabaseServerClient();
+  if (!supabase) return mockServices;
+
+  const { data, error } = await supabase
+    .from("services")
+    .select("*")
+    .order("sort_order", { ascending: true });
+
+  if (error || !data?.length) return mockServices;
+
+  return data.map((row) => ({
+    slug: row.slug as string,
+    title: row.title as string,
+    description: row.description as string,
+    deliverables: (row.deliverables as string[]) ?? [],
+    turnaround: row.turnaround as string,
+  }));
 }
 
 function buildNewsDetailFromMock(slug: string, allNews: NewsItem[]) {
   const news = mockNews.find((item) => item.slug === slug);
   if (!news) return null;
   const stars = mockStars.filter((star) => news.relatedStars.includes(star.slug));
-  const relatedEvents = mockEvents.filter((event) =>
-    event.starSlugs.some((starSlug) => news.relatedStars.includes(starSlug)),
-  );
   const relatedNews = mockNews.filter(
     (item) =>
       item.slug !== slug &&
@@ -255,7 +269,6 @@ function buildNewsDetailFromMock(slug: string, allNews: NewsItem[]) {
         `${news.excerpt}\n\n这是一条站内中文整理稿，当前优先用于帮助新粉快速理解活动重点。正式追行程、抢票或核对品牌官宣前，建议再结合官方账号、主办海报或票务平台信息二次确认。`,
     },
     stars,
-    relatedEvents,
     relatedNews,
     previousNews: findAdjacentNews(allNews, slug, -1),
     nextNews: findAdjacentNews(allNews, slug, 1),
@@ -265,7 +278,6 @@ function buildNewsDetailFromMock(slug: string, allNews: NewsItem[]) {
 export async function getNewsDetail(slug: string) {
   noStore();
   const allNews = await listNews();
-  const allEvents = await listEvents();
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
     if (!allowMockFallback) return null;
@@ -292,9 +304,6 @@ export async function getNewsDetail(slug: string) {
   const stars = ((relatedStarRows as StarRow[] | null) ?? [])
     .map(mapStarRowToStar)
     .sort((a, b) => relatedStars.indexOf(a.slug) - relatedStars.indexOf(b.slug));
-  const relatedEvents = allEvents.filter((event) =>
-    event.starSlugs.some((starSlug) => relatedStars.includes(starSlug)),
-  );
   const relatedNews = allNews.filter(
     (item) => item.slug !== slug && item.relatedStars.some((starSlug) => relatedStars.includes(starSlug)),
   );
@@ -313,7 +322,6 @@ export async function getNewsDetail(slug: string) {
       sourceLabel: sourceMeta.sourceLabel ?? row.source_url ?? undefined,
     },
     stars,
-    relatedEvents,
     relatedNews,
     previousNews: findAdjacentNews(allNews, slug, -1),
     nextNews: findAdjacentNews(allNews, slug, 1),
