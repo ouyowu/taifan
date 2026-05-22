@@ -18,7 +18,7 @@ export async function SiteHeader() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 h-[68px] border-b border-[#f07030]/10 bg-white/95 backdrop-blur-xl">
-      <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[80px] md:px-8 sm:px-[18px]">
+      <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[18px] sm:px-8 lg:px-[80px]">
         <Link href="/" className="flex items-center gap-3 text-[#1c1c1e]">
           <div>
             <p className="font-cn text-[22px] font-extrabold tracking-tight text-[#1c1c1e]">
@@ -28,7 +28,7 @@ export async function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-4 lg:flex xl:gap-6">
           {siteConfig.nav.map((item) => {
             const active =
               item.href === "/"
@@ -53,12 +53,6 @@ export async function SiteHeader() {
             <ShieldCheck className="h-3.5 w-3.5" />
             已审核内容
           </span>
-          <Link
-            href="/shop"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-[#e8e8e8] px-5 py-2 text-[13px] font-bold text-[#1c1c1e] transition-all duration-200 hover:border-[#f07030] hover:text-[#f07030]"
-          >
-            🛒 购物车
-          </Link>
           <Link
             href="/services"
             className="shadow-[0_8px_28px_rgba(240,112,48,0.22)] inline-flex items-center gap-2 rounded-full bg-[#f07030] px-5 py-2 text-[13px] font-bold text-white transition-all duration-200 hover:-translate-y-px hover:bg-[#d95820]"

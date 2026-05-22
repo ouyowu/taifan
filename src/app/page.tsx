@@ -8,6 +8,7 @@ import { connection } from "next/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { listEvents, listServices, listStars } from "@/lib/data";
 import { buildPageMetadata } from "@/lib/metadata";
+import { EVENT_TYPE_LABELS } from "@/lib/constants";
 import { primarySourceShowcaseEntries } from "@/lib/source-showcase";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -16,16 +17,6 @@ export const metadata: Metadata = buildPageMetadata({
     "泰饭网 taifan.club — 用中文整理泰国艺人、活动日历、官方来源和人工运营快读。",
   path: "/",
 });
-
-const eventTypeLabels: Record<string, string> = {
-  fanmeeting: "见面会",
-  concert: "演唱会",
-  brand: "品牌活动",
-  broadcast: "直播",
-  variety: "综艺",
-  airport: "机场行程",
-  event: "活动",
-};
 
 export default async function HomePage() {
   await connection();
@@ -214,7 +205,7 @@ export default async function HomePage() {
                         {format(new Date(event.startsAt), "M 月 d 日 HH:mm", { locale: zhCN })} · {event.city}
                       </p>
                     </div>
-                    <span className="editorial-chip-muted">{eventTypeLabels[event.type] ?? "活动"}</span>
+                    <span className="editorial-chip-muted">{EVENT_TYPE_LABELS[event.type] ?? "活动"}</span>
                   </Link>
                 ))}
               </div>

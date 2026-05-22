@@ -157,7 +157,7 @@ export async function listEvents(): Promise<Event[]> {
           const star = Array.isArray(item.stars) ? item.stars[0] : item.stars;
           return star?.slug ?? "";
         }).filter(Boolean) ?? [],
-      ticketStatus: row.status,
+      ticketStatus: deriveTicketStatus(row.status),
       summary: row.summary ?? "",
       highlights: Object.values((row.ai_extracted as Record<string, string[] | string>) ?? {})
         .flat()
@@ -230,42 +230,58 @@ export async function listNewsForAdmin() {
 }
 
 export async function listServices(): Promise<ServiceItem[]> {
-  return mockServices;
+  noStore();
+  const supabase = await createSupabaseServerClient();
+  if (!supabase) return mockServices;
+
+  const { data, error } = await supabase
+    .from("services")
+    .select("*")
+    .order("sort_order", { ascending: true });
+
+  if (error || !data?.length) return mockServices;
+
+  return data.map((row) => ({
+    slug: row.slug as string,
+    title: row.title as string,
+    description: row.description as string,
+    deliverables: (row.deliverables as string[]) ?? [],
+    turnaround: row.turnaround as string,
+  }));
+}
+
+function buildNewsDetailFromMock(slug: string, allNews: NewsItem[]) {
+  const news = mockNews.find((item) => item.slug === slug);
+  if (!news) return null;
+  const stars = mockStars.filter((star) => news.relatedStars.includes(star.slug));
+  const relatedNews = mockNews.filter(
+    (item) =>
+      item.slug !== slug &&
+      item.relatedStars.some((starSlug) => news.relatedStars.includes(starSlug)),
+  );
+  return {
+    news: {
+      ...news,
+      editorialMode: news.editorialMode ?? detectNewsEditorialMode({ body_md: news.bodyMd ?? null, slug: news.slug } as NewsRow),
+      reviewStatus: (news.reviewStatus ?? "published") as "draft" | "reviewed" | "published" | "rejected",
+      bodyMd:
+        news.bodyMd ??
+        `${news.excerpt}\n\n这是一条站内中文整理稿，当前优先用于帮助新粉快速理解活动重点。正式追行程、抢票或核对品牌官宣前，建议再结合官方账号、主办海报或票务平台信息二次确认。`,
+    },
+    stars,
+    relatedNews,
+    previousNews: findAdjacentNews(allNews, slug, -1),
+    nextNews: findAdjacentNews(allNews, slug, 1),
+  };
 }
 
 export async function getNewsDetail(slug: string) {
   noStore();
   const allNews = await listNews();
-  const allEvents = await listEvents();
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
     if (!allowMockFallback) return null;
-    const news = mockNews.find((item) => item.slug === slug);
-    if (!news) return null;
-    const stars = mockStars.filter((star) => news.relatedStars.includes(star.slug));
-    const relatedEvents = mockEvents.filter((event) =>
-      event.starSlugs.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    const relatedNews = mockNews.filter(
-      (item) =>
-        item.slug !== slug &&
-        item.relatedStars.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    return {
-      news: {
-        ...news,
-        editorialMode: news.editorialMode ?? detectNewsEditorialMode({ body_md: news.bodyMd ?? null, slug: news.slug } as NewsRow),
-        reviewStatus: news.reviewStatus ?? "published",
-        bodyMd:
-          news.bodyMd ??
-          `${news.excerpt}\n\n这是一条站内中文整理稿，当前优先用于帮助新粉快速理解活动重点。正式追行程、抢票或核对品牌官宣前，建议再结合官方账号、主办海报或票务平台信息二次确认。`,
-      },
-      stars,
-      relatedEvents,
-      relatedNews,
-      previousNews: findAdjacentNews(allNews, slug, -1),
-      nextNews: findAdjacentNews(allNews, slug, 1),
-    };
+    return buildNewsDetailFromMock(slug, allNews);
   }
 
   const { data, error } = await supabase
@@ -276,32 +292,7 @@ export async function getNewsDetail(slug: string) {
     .single();
   if (error || !data) {
     if (!allowMockFallback) return null;
-    const news = mockNews.find((item) => item.slug === slug);
-    if (!news) return null;
-    const stars = mockStars.filter((star) => news.relatedStars.includes(star.slug));
-    const relatedEvents = mockEvents.filter((event) =>
-      event.starSlugs.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    const relatedNews = mockNews.filter(
-      (item) =>
-        item.slug !== slug &&
-        item.relatedStars.some((starSlug) => news.relatedStars.includes(starSlug)),
-    );
-    return {
-      news: {
-        ...news,
-        editorialMode: news.editorialMode ?? detectNewsEditorialMode({ body_md: news.bodyMd ?? null, slug: news.slug } as NewsRow),
-        reviewStatus: news.reviewStatus ?? "published",
-        bodyMd:
-          news.bodyMd ??
-          `${news.excerpt}\n\n这是一条站内中文整理稿，当前优先用于帮助新粉快速理解活动重点。正式追行程、抢票或核对品牌官宣前，建议再结合官方账号、主办海报或票务平台信息二次确认。`,
-      },
-      stars,
-      relatedEvents,
-      relatedNews,
-      previousNews: findAdjacentNews(allNews, slug, -1),
-      nextNews: findAdjacentNews(allNews, slug, 1),
-    };
+    return buildNewsDetailFromMock(slug, allNews);
   }
 
   const row = data as NewsRow;
@@ -313,9 +304,6 @@ export async function getNewsDetail(slug: string) {
   const stars = ((relatedStarRows as StarRow[] | null) ?? [])
     .map(mapStarRowToStar)
     .sort((a, b) => relatedStars.indexOf(a.slug) - relatedStars.indexOf(b.slug));
-  const relatedEvents = allEvents.filter((event) =>
-    event.starSlugs.some((starSlug) => relatedStars.includes(starSlug)),
-  );
   const relatedNews = allNews.filter(
     (item) => item.slug !== slug && item.relatedStars.some((starSlug) => relatedStars.includes(starSlug)),
   );
@@ -334,7 +322,6 @@ export async function getNewsDetail(slug: string) {
       sourceLabel: sourceMeta.sourceLabel ?? row.source_url ?? undefined,
     },
     stars,
-    relatedEvents,
     relatedNews,
     previousNews: findAdjacentNews(allNews, slug, -1),
     nextNews: findAdjacentNews(allNews, slug, 1),
@@ -409,7 +396,7 @@ export async function listEventsForAdmin() {
     startsAt: row.starts_at,
     endsAt: row.ends_at ?? undefined,
     starSlugs: [],
-    ticketStatus: row.status,
+    ticketStatus: deriveTicketStatus(row.status),
     summary: row.summary ?? "",
     highlights: [],
     sourceLabel: deriveSourceMetadata(row.source_url ?? "").sourceLabel ?? row.source_url ?? "Supabase",
@@ -473,7 +460,7 @@ export async function getEventDetail(slug: string) {
     startsAt: data.starts_at,
     endsAt: data.ends_at ?? undefined,
     starSlugs: starItems.map((star) => star.slug),
-    ticketStatus: data.status,
+    ticketStatus: deriveTicketStatus(data.status),
     summary: data.summary ?? "",
     highlights: Object.values((data.ai_extracted as Record<string, string[] | string>) ?? {})
       .flat()
@@ -554,7 +541,7 @@ export async function getStarDetail(slug: string) {
     startsAt: row.starts_at,
     endsAt: row.ends_at ?? undefined,
     starSlugs: [slug],
-    ticketStatus: row.status,
+    ticketStatus: deriveTicketStatus(row.status),
     summary: row.summary ?? "",
     highlights: [],
     sourceLabel: deriveSourceMetadata(row.source_url ?? "").sourceLabel ?? row.source_url ?? "Supabase",
@@ -584,6 +571,16 @@ export async function getStarDetail(slug: string) {
   return { star, events, news };
 }
 
+function deriveTicketStatus(status: Event["status"]): string {
+  const map: Record<Event["status"], string> = {
+    scheduled: "待开票",
+    rumor: "消息待确认",
+    selling: "开票中",
+    done: "活动已结束",
+  };
+  return map[status] ?? status;
+}
+
 function prioritizeStars(items: Star[]) {
   return [...items].sort((a, b) => {
     const aIndex = CHINA_PRIORITY_STAR_SLUGS.indexOf(a.slug);
@@ -592,4 +589,16 @@ function prioritizeStars(items: Star[]) {
     const bRank = bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex;
     return aRank - bRank;
   });
+}
+
+export function getStaticStarParams() {
+  return mockStars.map((s) => ({ slug: s.slug }));
+}
+
+export function getStaticEventParams() {
+  return mockEvents.map((e) => ({ slug: e.slug }));
+}
+
+export function getStaticNewsParams() {
+  return mockNews.map((n) => ({ slug: n.slug }));
 }

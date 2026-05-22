@@ -6,6 +6,16 @@ const envSiteUrl =
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000");
 
+export const EVENT_TYPE_LABELS: Record<string, string> = {
+  fanmeeting: "见面会",
+  concert: "演唱会",
+  brand: "品牌活动",
+  broadcast: "直播",
+  variety: "综艺",
+  airport: "机场行程",
+  event: "活动",
+};
+
 export const siteConfig = {
   name: "泰饭网",
   shortName: "泰饭网",
@@ -25,7 +35,9 @@ export const siteConfig = {
   nav: [
     { href: "/", label: "首页" },
     { href: "/artists", label: "艺人" },
+    { href: "/news", label: "动态" },
     { href: "/calendar", label: "活动日历" },
+    { href: "/guides", label: "新粉攻略" },
     { href: "/services", label: "代办服务" },
     { href: "/shop", label: "周边商城" },
   ],
