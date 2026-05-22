@@ -23,7 +23,6 @@ export default async function HomePage() {
   const [stars, events, services] = await Promise.all([listStars(), listEvents(), listServices()]);
 
   const topStars = stars.slice(0, 10);
-  const leadStars = stars.slice(0, 6);
   const servicePreview = services.slice(0, 3);
 
   const monthGroups = events.slice(0, 18).reduce<
@@ -137,16 +136,34 @@ export default async function HomePage() {
 
           <aside className="space-y-4">
             <div className="editorial-sidebar-block">
-              <p className="editorial-kicker">Roster notes</p>
+              <p className="editorial-kicker">Reading order</p>
               <div className="mt-4 space-y-4">
-                {leadStars.map((star) => (
-                  <Link key={star.slug} href={`/stars/${star.slug}`} className="editorial-list-card-compact">
-                    <div>
-                      <p className="font-en text-[15px] font-black text-[#1c1c1e]">{star.nameEn}</p>
-                      <p className="font-cn mt-1 text-[12px] text-[#6c7076]">{star.nameCn}</p>
+                {[
+                  {
+                    index: "01",
+                    title: "先看头部艺人",
+                    description: "先从左侧 Top roster 选 3 到 5 位艺人，建立你自己的主追名单。",
+                  },
+                  {
+                    index: "02",
+                    title: "再看未来活动",
+                    description: "接着去看 6 到 10 月的活动月份区，先圈出你会真正跟的城市和场次。",
+                  },
+                  {
+                    index: "03",
+                    title: "最后补动态与原文",
+                    description: "确认要追哪条线后，再进动态页和官方来源索引，补整理稿和原文入口。",
+                  },
+                ].map((item) => (
+                  <div key={item.index} className="editorial-list-card-compact">
+                    <div className="flex items-start gap-3">
+                      <span className="editorial-list-index">{item.index}</span>
+                      <div>
+                        <p className="font-cn text-[14px] font-bold text-[#1c1c1e]">{item.title}</p>
+                        <p className="font-cn mt-1 text-[12px] leading-[1.8] text-[#6c7076]">{item.description}</p>
+                      </div>
                     </div>
-                    <p className="font-cn text-[12px] text-[#f07030]">{star.agency.split(" ")[0]}</p>
-                  </Link>
+                  </div>
                 ))}
               </div>
             </div>
