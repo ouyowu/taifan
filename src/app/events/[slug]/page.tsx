@@ -271,7 +271,7 @@ export default async function EventDetailPage({
               <div className="mt-5 grid gap-3 md:grid-cols-3">
                 {planningNotes.map((note, index) => (
                   <div key={`${event.slug}-note-${index}`} className="rounded-[22px] border border-[#ece7df] bg-white p-5">
-                    <p className="font-en text-[20px] font-black text-[#f07030]">0{index + 1}</p>
+                    <p className="font-en text-[20px] font-black text-[#f07030]">{String(index + 1).padStart(2, "0")}</p>
                     <p className="mt-3 font-cn text-[14px] leading-[1.9] text-[#3c3c43]">{note}</p>
                   </div>
                 ))}

@@ -42,7 +42,7 @@ export default async function GuidesPage() {
                 className="lattice-soft-card p-4 md:p-5"
                 style={{ backgroundColor: tones[index % tones.length] }}
               >
-                <p className="lattice-title text-[24px]">0{index + 1}</p>
+                <p className="lattice-title text-[24px]">{String(index + 1).padStart(2, "0")}</p>
                 <p className="lattice-title mt-3 text-[24px]">{section.title}</p>
                 <p className="font-cn mt-3 text-[14px] leading-[1.8] text-[#6e6e73]">{section.points[0]}</p>
               </div>
