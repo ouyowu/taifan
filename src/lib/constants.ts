@@ -1,10 +1,28 @@
-const envSiteUrl =
+const rawEnvSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000");
+
+function normalizeSiteUrl(siteUrl: string) {
+  if (siteUrl.includes("localhost")) return siteUrl;
+
+  try {
+    const parsed = new URL(siteUrl);
+
+    if (parsed.hostname === "taifan.club") {
+      return `${parsed.protocol}//www.taifan.club`;
+    }
+
+    return parsed.origin;
+  } catch {
+    return siteUrl;
+  }
+}
+
+const envSiteUrl = normalizeSiteUrl(rawEnvSiteUrl);
 
 export const EVENT_TYPE_LABELS: Record<string, string> = {
   fanmeeting: "见面会",

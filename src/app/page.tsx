@@ -6,13 +6,14 @@ import { CalendarClock, FileText, Radio, Sparkles, Users } from "lucide-react";
 import { connection } from "next/server";
 
 import { SiteShell } from "@/components/layout/site-shell";
+import { siteConfig } from "@/lib/constants";
 import { listEvents, listServices, listStars } from "@/lib/data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { EVENT_TYPE_LABELS } from "@/lib/constants";
 import { primarySourceShowcaseEntries } from "@/lib/source-showcase";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "泰国艺人一站式追星平台",
+  title: "泰国艺人、活动日历与中文快读",
   description:
     "泰饭网 taifan.club — 用中文整理泰国艺人、活动日历、官方来源和人工运营快读。",
   path: "/",
@@ -21,6 +22,29 @@ export const metadata: Metadata = buildPageMetadata({
 export default async function HomePage() {
   await connection();
   const [stars, events, services] = await Promise.all([listStars(), listEvents(), listServices()]);
+  const homepageStructuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: siteConfig.siteName,
+      alternateName: siteConfig.name,
+      url: siteConfig.siteUrl,
+      logo: `${siteConfig.siteUrl}/og/default.svg`,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+      inLanguage: "zh-CN",
+      description: siteConfig.description,
+      publisher: {
+        "@type": "Organization",
+        name: siteConfig.siteName,
+        url: siteConfig.siteUrl,
+      },
+    },
+  ];
 
   const topStars = stars.slice(0, 10);
   const servicePreview = services.slice(0, 3);
@@ -44,6 +68,11 @@ export default async function HomePage() {
 
   return (
     <SiteShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageStructuredData) }}
+      />
+
       <section className="editorial-page-shell mx-auto max-w-[1440px] py-12 md:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>

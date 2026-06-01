@@ -89,6 +89,9 @@ export default async function EventDetailPage({
       name: event.sourceLabel,
     },
     url: `${siteConfig.siteUrl}/events/${event.slug}`,
+    image: stars[0]?.coverUrl
+      ? [stars[0].coverUrl.startsWith("http") ? stars[0].coverUrl : `${siteConfig.siteUrl}${stars[0].coverUrl}`]
+      : [`${siteConfig.siteUrl}/og/default.svg`],
   };
 
   return (

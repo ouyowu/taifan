@@ -43,6 +43,9 @@ export default async function StarProfilePage({
     homeLocation: star.baseCity,
     affiliation: { "@type": "Organization", name: star.agency },
     url: `${siteConfig.siteUrl}/stars/${star.slug}`,
+    image: star.coverUrl
+      ? [star.coverUrl.startsWith("http") ? star.coverUrl : `${siteConfig.siteUrl}${star.coverUrl}`]
+      : [`${siteConfig.siteUrl}/og/default.svg`],
   };
 
   return (

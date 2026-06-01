@@ -51,11 +51,18 @@ export default async function NewsDetailPage({
     publisher: {
       "@type": "Organization",
       name: "泰饭网 taifan.club",
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.siteUrl}/og/default.svg`,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteConfig.siteUrl}/news/${news.slug}`,
     },
+    image: leadStar?.coverUrl
+      ? [leadStar.coverUrl.startsWith("http") ? leadStar.coverUrl : `${siteConfig.siteUrl}${leadStar.coverUrl}`]
+      : [`${siteConfig.siteUrl}/og/default.svg`],
   };
 
   return (
