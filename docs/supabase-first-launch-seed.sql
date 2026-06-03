@@ -662,6 +662,230 @@ values
     'https://www.gmm-tv.com/cms/upload_file/vj_floating2026/thumb/Satang_300.jpg',
     960,
     40
+  ),
+  (
+    'net-siraphop',
+    'Net',
+    'Net Siraphop',
+    'NetFans',
+    'DOMUNDI TV',
+    '曼谷',
+    '在 DOMUNDI 的双人线和海外 fan event 里都很有存在感，适合先从双人活动、公开到场和站内快读开始补课。',
+    array['演员', 'DOMUNDI', '双人线', '海外活动'],
+    '/logos/domundi-tv.svg',
+    '/logos/domundi-tv.svg',
+    959,
+    41
+  ),
+  (
+    'james-supamongkon',
+    'James',
+    'James Supamongkon',
+    'JamesFans',
+    'DOMUNDI TV',
+    '曼谷',
+    '适合从 NetJames 线、舞台活动和公开视频补课，是 DOMUNDI 里很适合作为目录入口的一位。',
+    array['演员', 'DOMUNDI', '双人线', '活动向'],
+    '/logos/domundi-tv.svg',
+    '/logos/domundi-tv.svg',
+    958,
+    42
+  ),
+  (
+    'max-kornthas',
+    'Max',
+    'Max Kornthas',
+    'MaxFans',
+    'DOMUNDI TV',
+    '曼谷',
+    '适合从双人活动、作品宣传和海外露出开始认识，人物线清楚、活动线也容易整理。',
+    array['演员', 'DOMUNDI', '双人线', '活动向'],
+    '/logos/domundi-tv.svg',
+    '/logos/domundi-tv.svg',
+    957,
+    43
+  ),
+  (
+    'nat-natasit',
+    'Nat',
+    'Nat Natasit',
+    'NatFans',
+    'DOMUNDI TV',
+    '曼谷',
+    '在 DOMUNDI roster 里适合从双人活动、舞台和宣传整理先入门，后续再补人物线。',
+    array['演员', 'DOMUNDI', '双人线', '舞台'],
+    '/logos/domundi-tv.svg',
+    '/logos/domundi-tv.svg',
+    956,
+    44
+  ),
+  (
+    'tutor-koraphat',
+    'Tutor',
+    'Tutor Koraphat',
+    'TutorFans',
+    'DOMUNDI TV',
+    '曼谷',
+    '适合从 TutorYim 线、海外活动和公开舞台开始认识，在目录页里属于很适合继续补厚的人物线。',
+    array['演员', 'DOMUNDI', '双人线', '海外活动'],
+    '/logos/domundi-tv.svg',
+    '/logos/domundi-tv.svg',
+    955,
+    45
+  ),
+  (
+    'yim-pharinyakorn',
+    'Yim',
+    'Yim Pharinyakorn',
+    'YimFans',
+    'DOMUNDI TV',
+    '曼谷',
+    '适合从 TutorYim 线和双人公开活动补起，活动和快读会比单看人物介绍更容易建立印象。',
+    array['演员', 'DOMUNDI', '双人线', '活动向'],
+    '/logos/domundi-tv.svg',
+    '/logos/domundi-tv.svg',
+    954,
+    46
+  ),
+  (
+    'barcode-tinnasit',
+    'Barcode',
+    'Barcode Tinnasit',
+    'BarcodeFans',
+    'Be On Cloud',
+    '曼谷',
+    '在 Be On Cloud 这条线上很适合从音乐、公开舞台和活动快读开始认识，人物辨识度也很强。',
+    array['演员', '歌手', 'Be On Cloud', '舞台'],
+    '/logos/beoncloud.svg',
+    '/logos/beoncloud.svg',
+    953,
+    47
+  ),
+  (
+    'tong-thanayut',
+    'Tong',
+    'Tong Thanayut',
+    'TongFans',
+    'Be On Cloud',
+    '曼谷',
+    '适合从演员线、活动露出和团体相关内容补起，是 Be On Cloud roster 里很适合继续加深的一位。',
+    array['演员', 'Be On Cloud', '活动向', '团体线'],
+    '/logos/beoncloud.svg',
+    '/logos/beoncloud.svg',
+    952,
+    48
+  ),
+  (
+    'nodt-nutthasid',
+    'Nodt',
+    'Nodt Nutthasid',
+    'NodtFans',
+    'Be On Cloud',
+    '曼谷',
+    '适合从团体露出、公开活动和作品宣传开始认识，是很适合补厚公司层内容的一位。',
+    array['演员', 'Be On Cloud', '活动向', '作品线'],
+    '/logos/beoncloud.svg',
+    '/logos/beoncloud.svg',
+    951,
+    49
+  ),
+  (
+    'fort-thitipong',
+    'Fort',
+    'Fort Thitipong',
+    'FortFans',
+    'MEMINDY',
+    '曼谷',
+    '在 MEMINDY 线里很适合从双人活动、公开舞台和快读开始认识，兼具活动价值和人物辨识度。',
+    array['演员', 'MEMINDY', '双人线', '活动向'],
+    '/logos/memindy.svg',
+    '/logos/memindy.svg',
+    950,
+    50
+  ),
+  (
+    'peat-wasuthorn',
+    'Peat',
+    'Peat Wasuthorn',
+    'PeatFans',
+    'MEMINDY',
+    '曼谷',
+    '适合和 Fort 一起追，最容易建立印象的是双人活动、公开视频和站内整理稿。',
+    array['演员', 'MEMINDY', '双人线', '活动向'],
+    '/logos/memindy.svg',
+    '/logos/memindy.svg',
+    949,
+    51
+  ),
+  (
+    'boss-chaikamon',
+    'Boss',
+    'Boss Chaikamon',
+    'BossFans',
+    'MEMINDY',
+    '曼谷',
+    '适合从双人公开活动和海外露出开始认识，是 MEMINDY 里很适合继续扩充的一条人物线。',
+    array['演员', 'MEMINDY', '双人线', '海外活动'],
+    '/logos/memindy.svg',
+    '/logos/memindy.svg',
+    948,
+    52
+  ),
+  (
+    'noeul-nuttarat',
+    'Noeul',
+    'Noeul Nuttarat',
+    'NoeulFans',
+    'MEMINDY',
+    '曼谷',
+    '适合从双人活动、品牌露出和海外线开始认识，和 Boss 一起看会更快建立主线。',
+    array['演员', 'MEMINDY', '双人线', '品牌露出'],
+    '/logos/memindy.svg',
+    '/logos/memindy.svg',
+    947,
+    53
+  ),
+  (
+    'lingling-kwong',
+    'Lingling',
+    'Lingling Kwong',
+    'LingFans',
+    'Channel 3',
+    '曼谷',
+    '适合从品牌露出、直播和双人活动线开始认识，和 Orm 一起看会更容易接住这条内容线。',
+    array['演员', 'Channel 3', '品牌露出', '双人线'],
+    '/portraits/lingling-kwong.png',
+    '/portraits/lingling-kwong.png',
+    946,
+    54
+  ),
+  (
+    'orm-kornnaphat',
+    'Orm',
+    'Orm Kornnaphat',
+    'OrmFans',
+    'Channel 3',
+    '曼谷',
+    '适合从直播、品牌活动和双人公开露出开始认识，和 Lingling 一起补会更有整体感。',
+    array['演员', 'Channel 3', '双人线', '直播向'],
+    '/portraits/orm-kornnaphat.png',
+    '/portraits/orm-kornnaphat.png',
+    945,
+    55
+  ),
+  (
+    'earth-katsamonnat',
+    'Earth',
+    'Earth Katsamonnat',
+    'EarthFans',
+    'Studio Wabi Sabi',
+    '曼谷',
+    '适合从人物档案、品牌露出和活动快读先认识，是 Studio Wabi Sabi 这条公司线里很适合做入口的一位。',
+    array['演员', 'Studio Wabi Sabi', '活动向', '人物档案'],
+    '/logos/studio-wabi-sabi.svg',
+    '/logos/studio-wabi-sabi.svg',
+    944,
+    56
   )
 on conflict (slug) do update set
   name_cn = excluded.name_cn,
@@ -1107,6 +1331,383 @@ values
     null,
     '偏时尚和媒体露出的公开秀场活动，适合提前看公开出场时间和媒体区位置。',
     '{"highlights":["时尚秀场","媒体区位置","公开出场时间"],"ticketStatus":"媒体 / 品牌邀请","sourceLabel":"Billkin Entertainment 品牌线"}'::jsonb
+  ),
+  (
+    'netjames-taipei-fan-night',
+    'NetJames Taipei Fan Night',
+    'fanmeeting',
+    'scheduled',
+    '台北',
+    'Legacy TERA',
+    '2026-07-12T19:00:00+08:00',
+    null,
+    null,
+    '适合双人线粉丝提前关注票务、福利和座位区的一场海外 fan night。',
+    '{"highlights":["双人互动","票区图","周边福利"],"ticketStatus":"预售预告","sourceLabel":"DOMUNDI TV 官方活动线"}'::jsonb
+  ),
+  (
+    'fortpeat-shanghai-weekend-meet',
+    'FortPeat Shanghai Weekend Meet',
+    'fanmeeting',
+    'scheduled',
+    '上海',
+    '西岸穹顶艺术中心',
+    '2026-08-02T19:30:00+08:00',
+    null,
+    null,
+    '适合 FortPeat 线粉丝提前看票区、双人福利和周边规则的一场周末活动。',
+    '{"highlights":["双人福利","票区说明","周边规则"],"ticketStatus":"开票预告","sourceLabel":"MEMINDY 官方活动线"}'::jsonb
+  ),
+  (
+    'maxnat-ho-chi-minh-preview-night',
+    'MaxNat Ho Chi Minh Preview Night',
+    'brand',
+    'scheduled',
+    '胡志明市',
+    'Saigon Exhibition Hall',
+    '2026-08-15T18:30:00+07:00',
+    null,
+    null,
+    '偏媒体和品牌合作属性的预览夜，适合提前看围观区、预约方式和拍摄提示。',
+    '{"highlights":["预约入口","媒体拍摄","围观提示"],"ticketStatus":"预约待公布","sourceLabel":"DOMUNDI TV 品牌合作线"}'::jsonb
+  ),
+  (
+    'barcode-hong-kong-music-night',
+    'Barcode Hong Kong Music Night',
+    'concert',
+    'scheduled',
+    '香港',
+    'KITEC Music Zone',
+    '2026-08-23T19:00:00+08:00',
+    null,
+    null,
+    '偏音乐和舞台感的一场个人夜活动，适合提前看票务、歌单和现场互动重点。',
+    '{"highlights":["歌单预告","票务节奏","现场互动"],"ticketStatus":"即将开售","sourceLabel":"Be On Cloud 官方视频线"}'::jsonb
+  ),
+  (
+    'tutoryim-manila-stage-day',
+    'TutorYim Manila Stage Day',
+    'fanmeeting',
+    'scheduled',
+    '马尼拉',
+    'New Frontier Theater',
+    '2026-09-06T18:00:00+08:00',
+    null,
+    null,
+    '适合新粉先看舞台互动、票务节奏和海外追活动准备的一场双人活动。',
+    '{"highlights":["舞台互动","开票节奏","海外准备"],"ticketStatus":"即将开售","sourceLabel":"DOMUNDI TV 国际活动线"}'::jsonb
+  ),
+  (
+    'bossnoeul-guangzhou-live-talk',
+    'BossNoeul Guangzhou Live Talk',
+    'broadcast',
+    'scheduled',
+    '广州',
+    '线上直播 + 品牌门店连线',
+    '2026-09-20T16:00:00+08:00',
+    null,
+    null,
+    '低门槛的直播连线型活动，适合新粉先看预约方式、直播看点和门店打卡提醒。',
+    '{"highlights":["直播预约","门店打卡","互动提问"],"ticketStatus":"免费预约","sourceLabel":"MEMINDY 官方直播线"}'::jsonb
+  ),
+  (
+    'tong-nodt-bangkok-cast-session',
+    'TongNodt Bangkok Cast Session',
+    'brand',
+    'scheduled',
+    '曼谷',
+    'Siam Pavalai Studio',
+    '2026-10-03T17:00:00+07:00',
+    null,
+    null,
+    '更偏作品宣传和 cast talk 的活动，适合先看公开区、媒体区和会后物料预期。',
+    '{"highlights":["cast talk","媒体区","会后物料"],"ticketStatus":"围观待确认","sourceLabel":"Be On Cloud 宣传物料线"}'::jsonb
+  ),
+  (
+    'lingling-orm-shenzhen-brand-weekend',
+    'LinglingOrm Shenzhen Brand Weekend',
+    'brand',
+    'scheduled',
+    '深圳',
+    '万象天地中庭',
+    '2026-10-11T18:00:00+08:00',
+    null,
+    null,
+    '适合新粉低门槛围观的一场品牌周末活动，重点在预约方式、门店打卡和到场时间。',
+    '{"highlights":["预约方式","门店打卡","到场时间"],"ticketStatus":"预约待公布","sourceLabel":"Channel 3 / 品牌活动线"}'::jsonb
+  ),
+  (
+    'win-seoul-open-label-pop-up-weekend',
+    'Win Seoul Open Label Pop-up Weekend',
+    'brand',
+    'scheduled',
+    '首尔',
+    'Seongsu Pop-up Hall',
+    '2026-09-12T17:30:00+09:00',
+    null,
+    null,
+    '偏品牌快闪和媒体露出的周末活动，适合提前看预约方式、围观区和门店动线。',
+    '{"highlights":["预约方式","围观区提示","门店动线"],"ticketStatus":"预约待公布","sourceLabel":"OPEN LABEL 官方品牌线"}'::jsonb
+  ),
+  (
+    'earth-bangkok-wabi-sabi-cafe-day',
+    'Earth Bangkok Wabi Sabi Cafe Day',
+    'brand',
+    'scheduled',
+    '曼谷',
+    'Wabi Sabi Creator Cafe',
+    '2026-09-27T15:00:00+07:00',
+    null,
+    null,
+    '低门槛的品牌 / 店访型活动，适合先看门店预约、签到和现场拍摄提醒。',
+    '{"highlights":["门店预约","签到提醒","现场拍摄"],"ticketStatus":"门店预约","sourceLabel":"Studio Wabi Sabi 官方活动线"}'::jsonb
+  ),
+  (
+    'peat-noeul-bangkok-live-preview',
+    'PeatNoeul Bangkok Live Preview Session',
+    'broadcast',
+    'scheduled',
+    '曼谷',
+    '线上直播 + 线下品牌空间',
+    '2026-08-20T18:00:00+07:00',
+    null,
+    null,
+    '适合新粉低门槛参与的一场直播连线活动，重点在预约入口、互动提问和会后回看信息。',
+    '{"highlights":["预约入口","互动提问","回看线索"],"ticketStatus":"免费预约","sourceLabel":"MEMINDY 官方直播线"}'::jsonb
+  ),
+  (
+    'barcode-singapore-mini-stage',
+    'Barcode Singapore Mini Stage',
+    'concert',
+    'scheduled',
+    '新加坡',
+    'Gateway Theatre Black Box',
+    '2026-09-12T19:30:00+08:00',
+    null,
+    null,
+    '偏音乐和小型舞台的一场个人活动，适合先看歌单方向、票区和会后互动规则。',
+    '{"highlights":["小型舞台","票区说明","歌单预期"],"ticketStatus":"即将开票","sourceLabel":"Be On Cloud 官方视频线"}'::jsonb
+  ),
+  (
+    'lingling-orm-bangkok-festival-stage',
+    'LinglingOrm Bangkok Festival Stage',
+    'fanmeeting',
+    'scheduled',
+    '曼谷',
+    'Siam Square Festival Hall',
+    '2026-09-26T17:00:00+07:00',
+    null,
+    null,
+    '适合女艺人线粉丝关注的一场节庆舞台活动，重点在站位、互动和品牌合作露出。',
+    '{"highlights":["节庆舞台","互动环节","品牌合作露出"],"ticketStatus":"即将公布","sourceLabel":"Channel 3 / 节庆活动线"}'::jsonb
+  ),
+  (
+    'earth-manila-wabisabi-fan-day',
+    'Earth Manila Wabi Sabi Fan Day',
+    'fanmeeting',
+    'scheduled',
+    '马尼拉',
+    'Samsung Hall',
+    '2026-10-06T18:30:00+08:00',
+    null,
+    null,
+    '适合想补 Studio Wabi Sabi 人物线的新粉先关注的一场海外 fan day，重点在票区和互动福利。',
+    '{"highlights":["海外 fan day","票区图","互动福利"],"ticketStatus":"预售预告","sourceLabel":"Studio Wabi Sabi 官方活动线"}'::jsonb
+  ),
+  (
+    'james-tokyo-style-briefing',
+    'James Tokyo Style Briefing',
+    'brand',
+    'scheduled',
+    '东京',
+    'Omotesando Media Loft',
+    '2026-08-29T17:30:00+09:00',
+    null,
+    null,
+    '偏时尚和媒体露出的个人 briefing，适合先看公开区、媒体区和会后图片物料预期。',
+    '{"highlights":["媒体露出","公开区判断","会后物料"],"ticketStatus":"围观待确认","sourceLabel":"DOMUNDI TV 个人宣传线"}'::jsonb
+  ),
+  (
+    'fortpeat-kuala-lumpur-fan-weekend',
+    'FortPeat Kuala Lumpur Fan Weekend',
+    'fanmeeting',
+    'scheduled',
+    '吉隆坡',
+    'Zepp Kuala Lumpur',
+    '2026-10-18T18:00:00+08:00',
+    null,
+    null,
+    '双人主线很清楚的一场海外周末活动，适合先看票区、福利和会后 hi-touch 规则。',
+    '{"highlights":["双人福利","票区节奏","会后规则"],"ticketStatus":"预售预告","sourceLabel":"MEMINDY 国际活动线"}'::jsonb
+  ),
+  (
+    'linglingorm-guangzhou-media-day',
+    'LinglingOrm Guangzhou Media Day',
+    'brand',
+    'scheduled',
+    '广州',
+    '天环广场品牌媒体空间',
+    '2026-08-31T15:00:00+08:00',
+    null,
+    null,
+    '偏品牌媒体日的一场露出，适合先判断公开区有没有价值，以及会不会有门店联动物料。',
+    '{"highlights":["媒体日","公开区价值","门店联动"],"ticketStatus":"媒体邀请制","sourceLabel":"Channel 3 / 媒体品牌线"}'::jsonb
+  ),
+  (
+    'earth-taipei-cafe-session',
+    'Earth Taipei Cafe Session',
+    'brand',
+    'scheduled',
+    '台北',
+    'Wabi Sabi Pop-up Cafe Taipei',
+    '2026-10-24T14:30:00+08:00',
+    null,
+    null,
+    '低门槛、偏粉丝互动和店内打卡的一场 cafe session，适合先看预约方式和签到规则。',
+    '{"highlights":["店内互动","预约方式","签到规则"],"ticketStatus":"门店预约","sourceLabel":"Studio Wabi Sabi 海外活动线"}'::jsonb
+  ),
+  (
+    'win-bangkok-open-label-media-night',
+    'Win Bangkok Open Label Media Night',
+    'brand',
+    'scheduled',
+    '曼谷',
+    'ICONSIAM River Hall',
+    '2026-10-02T18:30:00+07:00',
+    null,
+    null,
+    '偏品牌媒体夜和短时公开露出的活动，适合先判断公开区、媒体区和门店联动价值。',
+    '{"highlights":["品牌媒体夜","公开区判断","门店联动"],"ticketStatus":"媒体邀请制","sourceLabel":"OPEN LABEL 官方品牌线"}'::jsonb
+  ),
+  (
+    'bossnoeul-taipei-live-link-day',
+    'BossNoeul Taipei Live Link Day',
+    'broadcast',
+    'scheduled',
+    '台北',
+    '线上直播 + 品牌快闪店',
+    '2026-09-18T17:00:00+08:00',
+    null,
+    null,
+    '低门槛的直播连线活动，适合先看预约方式、线下门店联动和回看入口。',
+    '{"highlights":["直播预约","门店联动","回看入口"],"ticketStatus":"免费预约","sourceLabel":"MEMINDY 官方直播线"}'::jsonb
+  ),
+  (
+    'orm-bangkok-style-briefing',
+    'Orm Bangkok Style Briefing',
+    'brand',
+    'scheduled',
+    '曼谷',
+    'Central Embassy Event Lounge',
+    '2026-09-22T16:30:00+07:00',
+    null,
+    null,
+    '偏个人品牌和媒体露出的 briefing，适合先判断公开区和会后图像物料值不值得追。',
+    '{"highlights":["个人 briefing","媒体露出","会后物料"],"ticketStatus":"围观待确认","sourceLabel":"Channel 3 / 个人品牌线"}'::jsonb
+  ),
+  (
+    'earth-seoul-wabisabi-pop-up-day',
+    'Earth Seoul Wabi Sabi Pop-up Day',
+    'brand',
+    'scheduled',
+    '首尔',
+    'Seongsu Creator Pop-up',
+    '2026-10-15T15:30:00+09:00',
+    null,
+    null,
+    '偏门店露出和粉丝打卡的一场海外 pop-up 活动，适合先看预约、签到和限定物料。',
+    '{"highlights":["pop-up 露出","预约方式","限定物料"],"ticketStatus":"预约待公布","sourceLabel":"Studio Wabi Sabi 海外活动线"}'::jsonb
+  ),
+  (
+    'nat-max-bangkok-preview-session',
+    'NatMax Bangkok Preview Session',
+    'brand',
+    'scheduled',
+    '曼谷',
+    'Siam Discovery Glass Box',
+    '2026-10-08T17:30:00+07:00',
+    null,
+    null,
+    '偏品牌预览和短时公开露出的活动，适合先看预约方式、公开区和会后图像物料。',
+    '{"highlights":["预约方式","公开区","会后物料"],"ticketStatus":"预约待公布","sourceLabel":"DOMUNDI TV 品牌合作线"}'::jsonb
+  ),
+  (
+    'tong-barcode-bangkok-music-talk',
+    'TongBarcode Bangkok Music Talk',
+    'concert',
+    'scheduled',
+    '曼谷',
+    'Lido Connect Hall 2',
+    '2026-09-30T19:00:00+07:00',
+    null,
+    null,
+    '偏音乐分享和现场 talk 的小型舞台活动，适合先看票区、歌单方向和会后互动。',
+    '{"highlights":["音乐分享","票区说明","会后互动"],"ticketStatus":"即将开票","sourceLabel":"Be On Cloud 官方视频线"}'::jsonb
+  ),
+  (
+    'fort-boss-shenzhen-live-day',
+    'FortBoss Shenzhen Live Day',
+    'broadcast',
+    'scheduled',
+    '深圳',
+    '线上直播 + 快闪门店空间',
+    '2026-10-05T16:30:00+08:00',
+    null,
+    null,
+    '低门槛直播和门店联动的一场活动，适合先看预约方式、门店规则和回看入口。',
+    '{"highlights":["直播预约","门店规则","回看入口"],"ticketStatus":"免费预约","sourceLabel":"MEMINDY 官方直播线"}'::jsonb
+  ),
+  (
+    'win-hong-kong-open-label-briefing',
+    'Win Hong Kong Open Label Briefing',
+    'brand',
+    'scheduled',
+    '香港',
+    'Harbour City Brand Studio',
+    '2026-10-26T17:00:00+08:00',
+    null,
+    null,
+    '偏品牌 briefing 和媒体露出的香港活动，适合先看公开区和会后图像物料价值。',
+    '{"highlights":["品牌 briefing","公开区判断","会后图像物料"],"ticketStatus":"围观待确认","sourceLabel":"OPEN LABEL 官方品牌线"}'::jsonb
+  ),
+  (
+    'peat-noeul-macau-fan-session',
+    'PeatNoeul Macau Fan Session',
+    'fanmeeting',
+    'scheduled',
+    '澳门',
+    'Broadway Theatre',
+    '2026-10-12T18:30:00+08:00',
+    null,
+    null,
+    '双人互动和福利为主的一场海外 fan session，适合先看票区、福利和会后互动规则。',
+    '{"highlights":["双人福利","票区节奏","会后互动"],"ticketStatus":"即将开票","sourceLabel":"MEMINDY 国际活动线"}'::jsonb
+  ),
+  (
+    'lingling-bangkok-brand-salon',
+    'Lingling Bangkok Brand Salon',
+    'brand',
+    'scheduled',
+    '曼谷',
+    'Gaysorn Urban Resort',
+    '2026-10-20T16:00:00+07:00',
+    null,
+    null,
+    '偏个人品牌露出和媒体拍摄的一场 salon 活动，适合先判断公开区和图像物料密度。',
+    '{"highlights":["个人品牌露出","媒体拍摄","图像物料"],"ticketStatus":"预约待公布","sourceLabel":"Channel 3 / 个人品牌线"}'::jsonb
+  ),
+  (
+    'earth-hong-kong-wabisabi-store-day',
+    'Earth Hong Kong Wabi Sabi Store Day',
+    'brand',
+    'scheduled',
+    '香港',
+    'Causeway Bay Pop-up Store',
+    '2026-10-28T15:00:00+08:00',
+    null,
+    null,
+    '偏店内打卡和限定物料的一场 store day，适合先看预约方式、签到和限定发放规则。',
+    '{"highlights":["店内打卡","限定物料","签到规则"],"ticketStatus":"门店预约","sourceLabel":"Studio Wabi Sabi 海外活动线"}'::jsonb
   )
 on conflict (slug) do update set
   title = excluded.title,
@@ -1177,7 +1778,52 @@ from (values
   ('zee-nunew-hong-kong-fashion-week', 'nunew-chawarin'),
   ('taynew-singapore-anniversary-meet', 'tay-tawan'),
   ('taynew-singapore-anniversary-meet', 'new-thitipoom'),
-  ('billkin-taipei-fashion-stage', 'billkin')
+  ('billkin-taipei-fashion-stage', 'billkin'),
+  ('netjames-taipei-fan-night', 'net-siraphop'),
+  ('netjames-taipei-fan-night', 'james-supamongkon'),
+  ('fortpeat-shanghai-weekend-meet', 'fort-thitipong'),
+  ('fortpeat-shanghai-weekend-meet', 'peat-wasuthorn'),
+  ('maxnat-ho-chi-minh-preview-night', 'max-kornthas'),
+  ('maxnat-ho-chi-minh-preview-night', 'nat-natasit'),
+  ('barcode-hong-kong-music-night', 'barcode-tinnasit'),
+  ('tutoryim-manila-stage-day', 'tutor-koraphat'),
+  ('tutoryim-manila-stage-day', 'yim-pharinyakorn'),
+  ('bossnoeul-guangzhou-live-talk', 'boss-chaikamon'),
+  ('bossnoeul-guangzhou-live-talk', 'noeul-nuttarat'),
+  ('tong-nodt-bangkok-cast-session', 'tong-thanayut'),
+  ('tong-nodt-bangkok-cast-session', 'nodt-nutthasid'),
+  ('lingling-orm-shenzhen-brand-weekend', 'lingling-kwong'),
+  ('lingling-orm-shenzhen-brand-weekend', 'orm-kornnaphat'),
+  ('win-seoul-open-label-pop-up-weekend', 'win-metawin'),
+  ('earth-bangkok-wabi-sabi-cafe-day', 'earth-katsamonnat'),
+  ('peat-noeul-bangkok-live-preview', 'peat-wasuthorn'),
+  ('peat-noeul-bangkok-live-preview', 'noeul-nuttarat'),
+  ('barcode-singapore-mini-stage', 'barcode-tinnasit'),
+  ('lingling-orm-bangkok-festival-stage', 'lingling-kwong'),
+  ('lingling-orm-bangkok-festival-stage', 'orm-kornnaphat'),
+  ('earth-manila-wabisabi-fan-day', 'earth-katsamonnat'),
+  ('james-tokyo-style-briefing', 'james-supamongkon'),
+  ('fortpeat-kuala-lumpur-fan-weekend', 'fort-thitipong'),
+  ('fortpeat-kuala-lumpur-fan-weekend', 'peat-wasuthorn'),
+  ('linglingorm-guangzhou-media-day', 'lingling-kwong'),
+  ('linglingorm-guangzhou-media-day', 'orm-kornnaphat'),
+  ('earth-taipei-cafe-session', 'earth-katsamonnat'),
+  ('win-bangkok-open-label-media-night', 'win-metawin'),
+  ('bossnoeul-taipei-live-link-day', 'boss-chaikamon'),
+  ('bossnoeul-taipei-live-link-day', 'noeul-nuttarat'),
+  ('orm-bangkok-style-briefing', 'orm-kornnaphat'),
+  ('earth-seoul-wabisabi-pop-up-day', 'earth-katsamonnat'),
+  ('nat-max-bangkok-preview-session', 'nat-natasit'),
+  ('nat-max-bangkok-preview-session', 'max-kornthas'),
+  ('tong-barcode-bangkok-music-talk', 'tong-thanayut'),
+  ('tong-barcode-bangkok-music-talk', 'barcode-tinnasit'),
+  ('fort-boss-shenzhen-live-day', 'fort-thitipong'),
+  ('fort-boss-shenzhen-live-day', 'boss-chaikamon'),
+  ('win-hong-kong-open-label-briefing', 'win-metawin'),
+  ('peat-noeul-macau-fan-session', 'peat-wasuthorn'),
+  ('peat-noeul-macau-fan-session', 'noeul-nuttarat'),
+  ('lingling-bangkok-brand-salon', 'lingling-kwong'),
+  ('earth-hong-kong-wabisabi-store-day', 'earth-katsamonnat')
 ) as links(event_slug, star_slug)
 join events e on e.slug = links.event_slug
 join stars s on s.slug = links.star_slug
@@ -1760,6 +2406,470 @@ values
     'https://www.youtube.com/@BillkinEntertainment/videos',
     '/portraits/billkin.png',
     array['billkin']
+  ),
+  (
+    'netjames-taipei-fan-night-watch',
+    'NetJames Taipei Fan Night Watch',
+    '整理票区、双人福利和台北追活动时最值得先做的准备。',
+    'NetJames 这种海外 fan night，对粉丝来说最重要的通常不是海报本身，而是这场到底值不值得专门安排出行。台北场这类活动最需要先搞清楚的是票区差异、双人福利、周边领取和活动结束后的交通节奏。
+
+这条快读会优先把票区、双人福利和会后周边规则讲清楚，帮助第一次追 NetJames 线的新粉快速做判断。相比只看一张海报，先知道活动到底更偏舞台、互动还是福利型，会更影响你要不要认真准备抢票和订酒店。
+
+如果后续 DOMUNDI TV 补出正式票区图、福利细则或海外粉丝须知，站内会继续把这些并回这条稿里。',
+    '活动速递',
+    'published',
+    '2026-06-16T14:20:00+08:00',
+    'https://www.instagram.com/domunditv/',
+    '/logos/domundi-tv.svg',
+    array['net-siraphop', 'james-supamongkon']
+  ),
+  (
+    'maxnat-preview-night-note',
+    'MaxNat Ho Chi Minh Preview Night Note',
+    '整理预约方式、媒体区属性和适合围观型粉丝先看的重点。',
+    'MaxNat 这类品牌预览夜最容易让人误判成普通见面会，但它通常更偏品牌合作和媒体拍摄，所以最值得先判断的是围观价值。对中国粉丝来说，是否开放预约、现场有没有公开区，以及会不会有会后物料，比一句官宣更关键。
+
+这条整理会优先说明预约方式、媒体区属性和围观可能性，帮助你快速判断这场值不值得追。对第一次补 MaxNat 线的新粉来说，这种快读比单纯看品牌帖更容易看懂活动属性。
+
+如果后续补出预约页、入场地图或会后官方图，站内会继续把它们补回这条内容里。',
+    '品牌活动',
+    'published',
+    '2026-06-18T18:00:00+08:00',
+    'https://www.instagram.com/domunditv/',
+    '/logos/domundi-tv.svg',
+    array['max-kornthas', 'nat-natasit']
+  ),
+  (
+    'tutoryim-manila-stage-brief',
+    'TutorYim Manila Stage Day Brief',
+    '整理海外舞台活动的开票节奏、互动属性和适合新粉先看的判断点。',
+    'TutorYim 这类海外舞台活动，对新粉来说最大的门槛不是语言，而是活动属性不够清楚。到底是偏舞台演出、粉丝互动，还是两者混合，会直接影响票务价值和到场期待。
+
+站内这条快读会优先说明开票节奏、双人互动属性和海外追活动的准备重点，让你先判断“值不值得追”。如果你对 TutorYim 线还不熟，从活动页和这条整理稿一起看，会比只看单张海报更容易建立主线。
+
+如果后续补出正式票区图、场馆路线或官方应援规则，站内会继续把信息更新进这条稿里。',
+    '活动速递',
+    'published',
+    '2026-06-20T13:10:00+08:00',
+    'https://www.instagram.com/domunditv/',
+    '/logos/domundi-tv.svg',
+    array['tutor-koraphat', 'yim-pharinyakorn']
+  ),
+  (
+    'fortpeat-shanghai-weekend-note',
+    'FortPeat Shanghai Weekend Meet Note',
+    '整理双人福利、票区和周边规则，适合 FortPeat 线粉丝先判断值不值得追。',
+    'FortPeat 这类周末 meet，对中国粉丝来说最重要的是搞清楚这场活动更偏互动、福利还是舞台。因为这会直接决定你对票区和到场时间的预期，也会影响要不要专门安排跨城追活动。
+
+这条整理会优先说明双人福利、票区和周边规则，让第一次补 FortPeat 线的新粉也能快速看懂活动价值。和只看海报相比，先看中文整理更容易建立对这条双人线的判断。
+
+如果后续 MEMINDY 补出正式座位图、周边说明或应援规则，站内会继续把它们并回这条稿里。',
+    '活动速递',
+    'published',
+    '2026-06-22T16:00:00+08:00',
+    'https://www.instagram.com/memindyofficial/',
+    '/logos/memindy.svg',
+    array['fort-thitipong', 'peat-wasuthorn']
+  ),
+  (
+    'bossnoeul-live-talk-reminder',
+    'BossNoeul Guangzhou Live Talk Reminder',
+    '整理直播预约、门店连线和低门槛入门这条线最值得先看的地方。',
+    'BossNoeul 这类直播连线活动，对新粉来说其实是很好的低门槛入口。你不需要先研究复杂票务，只要先弄清楚预约入口、直播看点和门店打卡方式，就能快速判断这条线适不适合继续追。
+
+这条快读会优先说明预约方式、门店连线和互动提问节奏，让第一次接触 BossNoeul 的粉丝也能快速跟上。比起把注意力放在零散短视频和截图上，先看这一条会更容易理解为什么这场活动值得关注。
+
+如果后续补出更明确的直播时间、门店活动图或回放整理，站内会继续补进来。',
+    '直播',
+    'published',
+    '2026-06-24T11:30:00+08:00',
+    'https://www.instagram.com/memindyofficial/',
+    '/logos/memindy.svg',
+    array['boss-chaikamon', 'noeul-nuttarat']
+  ),
+  (
+    'barcode-hk-music-night-guide',
+    'Barcode Hong Kong Music Night Guide',
+    '整理歌单预期、票务节奏和适合舞台活动粉丝先看的重点。',
+    'Barcode 这类偏音乐和舞台的个人活动，最需要先判断的是它到底更像小型 live 还是完整演出夜。对中国粉丝来说，这会直接影响票务价值和现场期待，所以站内更适合先做成一条判断入口，而不是只给一句官宣。
+
+这条快读会优先说明歌单预期、票务节奏和舞台互动重点，让你在时间不多的情况下也能先快速判断值不值得追。对第一次补 Barcode 线的新粉来说，这条内容比直接翻公开视频标题更友好。
+
+如果后续补出正式票区图、歌单方向或品牌合作延伸内容，站内会继续并回这一条。',
+    '活动速递',
+    'published',
+    '2026-06-26T15:45:00+08:00',
+    'https://www.youtube.com/@beoncloudofficial/videos',
+    '/logos/beoncloud.svg',
+    array['barcode-tinnasit']
+  ),
+  (
+    'tongnodt-cast-session-watch',
+    'TongNodt Bangkok Cast Session Watch',
+    '整理作品宣传活动的公开区、媒体区和会后物料预期，帮助粉丝判断值不值得追。',
+    'TongNodt 这种 cast session 更像作品宣传和团队露出，不一定会像见面会那样有完整粉丝互动。所以对围观型粉丝来说，最值得先看的是公开区、媒体区和会后物料预期，而不是先被“有活动”这件事本身带走。
+
+这条整理会先说明活动属性、公开区和会后物料价值，让你快速判断这场是不是更适合等站内整理，而不是专门跑现场。对 Be On Cloud roster 还不熟的新粉来说，这种快读会比只看活动标题更容易建立理解。
+
+如果后续补出官方图、采访片段或 cast 合影，站内会继续把它们补进这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-06-28T17:05:00+08:00',
+    'https://www.youtube.com/@beoncloudofficial/videos',
+    '/logos/beoncloud.svg',
+    array['tong-thanayut', 'nodt-nutthasid']
+  ),
+  (
+    'linglingorm-shenzhen-brand-weekend-note',
+    'LinglingOrm Shenzhen Brand Weekend Note',
+    '整理预约方式、门店打卡和低门槛围观这条线最值得先看的重点。',
+    'LinglingOrm 这类品牌周末活动最大的价值，在于它很适合低门槛围观和快速建立人物印象。对中国粉丝来说，先看预约方式、门店打卡和到场时间，往往比先翻大量路透更有效。
+
+这条快读会优先说明预约方式、门店动线和现场值不值得去，让新粉也能快速看懂这场活动怎么玩。对还没完整追 Channel 3 这条线的人来说，这种轻量活动反而是很好的第一入口。
+
+如果后续补出门店地图、正式时间或品牌礼赠规则，站内会继续把这些更新并回这条内容里。',
+    '品牌活动',
+    'published',
+    '2026-06-30T12:20:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/portraits/lingling-kwong.png',
+    array['lingling-kwong', 'orm-kornnaphat']
+  ),
+  (
+    'win-seoul-open-label-weekend-watch',
+    'Win Seoul Open Label Pop-up Weekend Watch',
+    '整理预约方式、围观区和首尔品牌快闪最值得先判断的重点。',
+    'Win 这类品牌快闪周末活动，最容易让人第一眼只看到“有公开露出”，但真正决定值不值得追的，通常是预约方式、围观区和门店动线。对中国粉丝来说，如果只是单次短停留，追不追往往取决于能不能提前看懂现场规则。
+
+这条整理会优先说明预约方式、围观区和门店动线，帮助你快速判断这场活动更适合去现场，还是更适合等官方物料。对 Open Label 这条公司线来说，这种品牌快闪活动也是最容易形成连续更新的一类内容。
+
+如果后续补出正式预约页、门店地图或到场时间窗口，站内会继续把这些更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-02T14:40:00+08:00',
+    'https://www.instagram.com/openlabel_th/',
+    '/portraits/win-metawin.png',
+    array['win-metawin']
+  ),
+  (
+    'earth-wabi-sabi-cafe-day-note',
+    'Earth Bangkok Wabi Sabi Cafe Day Note',
+    '整理门店预约、签到和适合人物档案型粉丝先看的低门槛活动重点。',
+    'Earth 这类门店 / cafe day 型活动，对新粉来说其实是很好的低门槛入口。你不一定要先研究复杂票务，只要先看预约方式、签到规则和现场拍摄提醒，就能快速判断这场活动适不适合继续追。
+
+这条快读会优先说明门店预约、签到和现场拍摄重点，也会帮助你判断这类活动更适合现场去看，还是更适合等站内整理和会后物料。对 Studio Wabi Sabi 这条公司线来说，这种活动很适合用来先建立人物印象。
+
+如果后续补出门店地图、正式时段或会后物料，站内会继续把这些并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-04T11:10:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/logos/studio-wabi-sabi.svg',
+    array['earth-katsamonnat']
+  ),
+  (
+    'peatnoeul-bangkok-live-preview-note',
+    'PeatNoeul Bangkok Live Preview Note',
+    '整理预约入口、互动提问和这类低门槛直播活动值不值得追的判断点。',
+    'PeatNoeul 这类直播连线活动，对新粉来说最大的价值在于门槛低、信息密。你不用先研究复杂票务，只要先搞清楚预约入口、互动提问和会后会不会有完整回放，就能快速判断这场活动值不值得花时间盯。
+
+这条整理会优先说明预约方式、互动提问和回看线索，帮助第一次补 MEMINDY 线的粉丝快速建立理解。比起零散刷短视频，先看一条完整中文快读会更省时间。
+
+如果后续补出正式直播页、回放入口或门店联动说明，站内会继续把这些并回这条稿里。',
+    '直播',
+    'published',
+    '2026-07-06T12:15:00+08:00',
+    'https://www.instagram.com/memindyofficial/',
+    '/logos/memindy.svg',
+    array['peat-wasuthorn', 'noeul-nuttarat']
+  ),
+  (
+    'barcode-singapore-mini-stage-watch',
+    'Barcode Singapore Mini Stage Watch',
+    '整理票区、歌单方向和这类个人小型舞台最值得先看的判断点。',
+    'Barcode 这类 mini stage，最容易让人高估或低估现场价值。真正值得先看的不是活动名字，而是它更偏试听会、品牌附带舞台，还是完整的小型演出。对想追音乐线的粉丝来说，这会直接影响票务价值。
+
+这条快读会先把票区、歌单方向和会后互动规则讲清楚，帮助你快速判断这场值不值得继续追。比起先翻公开视频标题，先看这条中文整理会更容易抓住重点。
+
+如果后续补出正式票区图、歌单预热或福利说明，站内会继续补进来。',
+    '活动速递',
+    'published',
+    '2026-07-08T16:20:00+08:00',
+    'https://www.youtube.com/@beoncloudofficial/videos',
+    '/logos/beoncloud.svg',
+    array['barcode-tinnasit']
+  ),
+  (
+    'linglingorm-bangkok-festival-stage-note',
+    'LinglingOrm Bangkok Festival Stage Note',
+    '整理节庆舞台的站位、互动节奏和适合女艺人线新粉先看的重点。',
+    'LinglingOrm 这种节庆舞台活动，和普通见面会不一样，通常更看现场站位、公开互动时段和品牌合作露出。对刚开始追 Channel 3 线的新粉来说，这类活动其实很适合先建立人物印象。
+
+这条整理会优先说明站位、互动节奏和品牌露出，帮助你快速判断是去现场更值，还是等会后整理更合适。比起直接看海报，这种说明更能帮你做决定。
+
+如果后续补出节庆地图、品牌合作内容或现场切片，站内会继续把更新补进这条稿里。',
+    '活动速递',
+    'published',
+    '2026-07-10T11:50:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/portraits/lingling-kwong.png',
+    array['lingling-kwong', 'orm-kornnaphat']
+  ),
+  (
+    'earth-manila-fan-day-preview',
+    'Earth Manila Wabi Sabi Fan Day Preview',
+    '整理海外 fan day 的票区、互动福利和适合新粉快速理解的重点。',
+    'Earth 这类海外 fan day，对新粉来说最大的门槛通常不是语言，而是活动属性不清楚。到底更偏粉丝互动、舞台表演，还是福利型活动，会直接影响你对票区和出行的判断。
+
+这条整理会先把票区、互动福利和到场节奏讲清楚，帮助第一次追 Studio Wabi Sabi 人物线的粉丝快速入门。比起一开始就冲票务页，这种中文快读更适合先做第一层筛选。
+
+如果后续补出正式票区图、福利细则或海外粉丝须知，站内会继续并回这一条。',
+    '活动速递',
+    'published',
+    '2026-07-12T14:10:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/logos/studio-wabi-sabi.svg',
+    array['earth-katsamonnat']
+  ),
+  (
+    'james-tokyo-style-briefing-note',
+    'James Tokyo Style Briefing Note',
+    '整理媒体区、公开区和这类个人时尚 briefing 值不值得追的判断点。',
+    'James 这类个人时尚 briefing，最值得先看的不是海报，而是公开区到底有没有可见度。很多粉丝第一眼会被“东京活动”吸引，但真正决定值不值得追的，通常是媒体区属性、公开区判断和会后物料价值。
+
+这条整理会优先说明媒体区、公开区和会后物料预期，帮助第一次补 James 个人线的新粉快速判断这场活动是不是更适合等站内整理，而不是专门跑现场。相比只看一张活动图，这种快读更能帮助你做决定。
+
+如果后续补出正式时段、到场路线或媒体图，站内会继续把更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-14T13:20:00+08:00',
+    'https://www.instagram.com/domunditv/',
+    '/logos/domundi-tv.svg',
+    array['james-supamongkon']
+  ),
+  (
+    'fortpeat-kl-fan-weekend-watch',
+    'FortPeat Kuala Lumpur Fan Weekend Watch',
+    '整理双人福利、票区和海外周末活动值不值得专门跑一趟的判断点。',
+    'FortPeat 这种海外双人周末活动，对粉丝来说最重要的从来不是“有没有官宣”，而是这场到底值不值得专门跨城去追。对中国粉丝来说，双人福利、票区和会后规则，往往比海报本身更能决定这场的实际价值。
+
+这条快读会先把双人福利、票区节奏和会后 hi-touch 规则讲清楚，帮助新粉快速判断这场活动更偏福利型还是舞台型。和只看活动海报相比，先看这一条更容易知道自己该不该认真做出行准备。
+
+如果后续补出正式票区图、福利细则或海外粉丝须知，站内会继续把它们并回这条稿里。',
+    '活动速递',
+    'published',
+    '2026-07-16T16:40:00+08:00',
+    'https://www.instagram.com/memindyofficial/',
+    '/logos/memindy.svg',
+    array['fort-thitipong', 'peat-wasuthorn']
+  ),
+  (
+    'linglingorm-guangzhou-media-day-note',
+    'LinglingOrm Guangzhou Media Day Note',
+    '整理公开区、门店联动和品牌媒体日这类活动最值得先看的重点。',
+    'LinglingOrm 这种媒体品牌日，和普通见面会完全不是一种追法。真正值得先判断的是公开区有没有可见度、品牌门店会不会联动，以及会后是不是更适合等官方物料，而不是盲目冲现场。
+
+这条整理会优先说明公开区、门店联动和媒体属性，帮助想补 Channel 3 线的新粉快速判断这场活动怎么玩。比起零散刷路透，先看一条中文快读会更容易知道值不值得投入时间。
+
+如果后续补出品牌地图、签到时段或媒体图册，站内会继续把这些更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-18T11:30:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/portraits/lingling-kwong.png',
+    array['lingling-kwong', 'orm-kornnaphat']
+  ),
+  (
+    'earth-taipei-cafe-session-guide',
+    'Earth Taipei Cafe Session Guide',
+    '整理门店预约、签到和这类 cafe session 适不适合新粉低门槛参与的判断点。',
+    'Earth 这种 cafe session 的价值，通常不在于舞台有多大，而在于它是不是一场适合低门槛参与、顺手建立人物印象的活动。对新粉来说，这类活动最需要先看的是门店预约、签到规则和现场互动强度。
+
+这条整理会优先说明预约方式、签到规则和店内互动重点，帮助第一次追 Studio Wabi Sabi 人物线的粉丝快速判断值不值得去现场。相比只看活动标题，这条快读更容易让你知道这到底是一场“去打卡”还是“要认真准备”的活动。
+
+如果后续补出门店地图、预约页或店内特典信息，站内会继续并回这一条。',
+    '品牌活动',
+    'published',
+    '2026-07-20T14:00:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/logos/studio-wabi-sabi.svg',
+    array['earth-katsamonnat']
+  ),
+  (
+    'win-bangkok-open-label-media-night-watch',
+    'Win Bangkok Open Label Media Night Watch',
+    '整理公开区、媒体区和这类品牌媒体夜值不值得专门追的判断点。',
+    'Win 这类品牌媒体夜最值得先看的，不是海报，而是公开区到底有没有可见度。很多粉丝会被“曼谷品牌夜”吸引，但真正决定值不值得去现场的，通常是媒体区属性、公开区判断和门店联动有没有真实可追价值。
+
+这条整理会优先说明公开区、媒体区和门店联动，帮助想追 Open Label 线的粉丝快速判断这场活动是更适合去现场，还是更适合等站内整理。相比只看一张官宣图，这种快读更容易帮你做决定。
+
+如果后续补出正式时间窗口、品牌地图或媒体图册，站内会继续把更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-22T13:30:00+08:00',
+    'https://www.instagram.com/openlabel_th/',
+    '/portraits/win-metawin.png',
+    array['win-metawin']
+  ),
+  (
+    'bossnoeul-taipei-live-link-note',
+    'BossNoeul Taipei Live Link Note',
+    '整理直播预约、门店快闪和这类低门槛连线活动最值得先看的重点。',
+    'BossNoeul 这种 live link day 的价值，通常不在于一场活动有多大，而在于它是不是一条适合低门槛参与、顺手补线的内容入口。对新粉来说，最值得先看的就是预约方式、门店联动和会不会有回看入口。
+
+这条快读会优先说明直播预约、门店快闪和回看线索，帮助第一次补 MEMINDY 这条线的粉丝快速看懂这场活动怎么玩。比起单纯刷短视频，先看一条整理好的中文快读会更省时间。
+
+如果后续补出直播页、门店地图或会后互动物料，站内会继续把这些更新并回这条稿里。',
+    '直播',
+    'published',
+    '2026-07-24T12:10:00+08:00',
+    'https://www.instagram.com/memindyofficial/',
+    '/logos/memindy.svg',
+    array['boss-chaikamon', 'noeul-nuttarat']
+  ),
+  (
+    'orm-bangkok-style-briefing-note',
+    'Orm Bangkok Style Briefing Note',
+    '整理公开区、媒体露出和这类个人风格 briefing 值不值得继续追的判断点。',
+    'Orm 这种个人风格 briefing，看起来像小活动，但对粉丝来说最重要的不是活动大小，而是这是不是一场值得继续追的个人线露出。公开区有没有可见度、媒体会不会产出图、会后品牌会不会持续更新，往往比标题本身更重要。
+
+这条整理会优先说明公开区、媒体露出和会后图像物料，帮助想补 Channel 3 个人线的粉丝快速判断值不值得继续盯。比起只看品牌贴文，这种中文快读会更容易建立判断。
+
+如果后续补出正式时段、品牌图集或门店联动规则，站内会继续把这些并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-26T11:40:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/portraits/orm-kornnaphat.png',
+    array['orm-kornnaphat']
+  ),
+  (
+    'earth-seoul-pop-up-day-watch',
+    'Earth Seoul Wabi Sabi Pop-up Day Watch',
+    '整理预约、签到和限定物料，帮助新粉判断这类海外 pop-up 值不值得去。',
+    'Earth 这种海外 pop-up day 对新粉来说很容易看起来“好像很轻”，但它真正的价值往往在于预约方式、签到规则和限定物料。你不一定要为了它专门安排行程，但至少应该先判断这场活动到底是去打卡更值，还是等站内整理更合适。
+
+这条快读会优先说明预约、签到和限定物料，帮助第一次补 Studio Wabi Sabi 线的粉丝快速判断活动属性。和只看活动标题相比，先看这条整理好的中文快读会更容易决定下一步。
+
+如果后续补出正式预约页、品牌地图或现场限定内容，站内会继续把更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-28T14:50:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/logos/studio-wabi-sabi.svg',
+    array['earth-katsamonnat']
+  ),
+  (
+    'natmax-bangkok-preview-session-note',
+    'NatMax Bangkok Preview Session Note',
+    '整理预约方式、公开区和这类品牌预览会值不值得继续追的判断点。',
+    'NatMax 这种品牌 preview session 最值得先看的，不是活动海报，而是公开区到底有没有价值。对粉丝来说，真正决定值不值得追的，通常是预约方式、公开区可见度和会后图像物料会不会足够完整。
+
+这条整理会优先说明预约方式、公开区和会后物料，帮助第一次补 NatMax 线的新粉快速判断这场活动更适合去现场，还是更适合等站内整理。和只看一张活动图相比，先看这条中文快读会更容易做决定。
+
+如果后续补出正式预约页、现场时段或官方图册，站内会继续把更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-07-30T13:10:00+08:00',
+    'https://www.instagram.com/domunditv/',
+    '/logos/domundi-tv.svg',
+    array['nat-natasit', 'max-kornthas']
+  ),
+  (
+    'tongbarcode-bangkok-music-talk-watch',
+    'TongBarcode Bangkok Music Talk Watch',
+    '整理票区、歌单方向和这类音乐 talk 值不值得专门安排出行的判断点。',
+    'TongBarcode 这种音乐 talk 最容易让人误判成普通宣传活动，但对粉丝来说，真正重要的是它到底更偏舞台、聊天，还是两者混合。票区和歌单方向会直接影响这场活动的实际价值。
+
+这条快读会优先说明票区、歌单方向和会后互动规则，帮助第一次补 Be On Cloud 这条人物线的粉丝快速判断要不要继续追。相比只看活动标题，先看这一条会更容易知道自己该怎么准备。
+
+如果后续补出正式票区图、歌单预热或会后福利，站内会继续把这些更新并回这条稿里。',
+    '活动速递',
+    'published',
+    '2026-08-01T18:00:00+08:00',
+    'https://www.youtube.com/@beoncloudofficial/videos',
+    '/logos/beoncloud.svg',
+    array['tong-thanayut', 'barcode-tinnasit']
+  ),
+  (
+    'fortboss-shenzhen-live-day-note',
+    'FortBoss Shenzhen Live Day Note',
+    '整理直播预约、门店规则和这类低门槛 live day 最值得先看的重点。',
+    'FortBoss 这种 live day 的价值，通常不在于活动有多大，而在于它是不是一条适合低门槛参与、顺手补人物线的入口。对新粉来说，预约方式、门店规则和回看入口往往比活动名字本身更重要。
+
+这条整理会优先说明直播预约、门店规则和回看入口，帮助第一次补 MEMINDY 相关人物线的粉丝快速理解这场活动怎么玩。比起只刷碎片内容，先看一条完整中文快读更省时间。
+
+如果后续补出正式直播页、门店地图或会后互动物料，站内会继续把这些更新并回这条稿里。',
+    '直播',
+    'published',
+    '2026-08-03T12:20:00+08:00',
+    'https://www.instagram.com/memindyofficial/',
+    '/logos/memindy.svg',
+    array['fort-thitipong', 'boss-chaikamon']
+  ),
+  (
+    'win-hk-open-label-briefing-watch',
+    'Win Hong Kong Open Label Briefing Watch',
+    '整理公开区、会后图像物料和这类品牌 briefing 值不值得继续追的判断点。',
+    'Win 这类品牌 briefing 最值得先看的，不是活动名字，而是公开区和会后图像物料到底够不够值。对粉丝来说，真正决定值不值得追的，通常是现场可见度、品牌会不会持续放图，以及会不会有门店或媒体的第二波更新。
+
+这条整理会优先说明公开区、会后图像物料和品牌更新密度，帮助想补 Open Label 线的粉丝快速判断这场活动更适合去现场，还是更适合等站内整理。比起先刷零散路透，这种快读更容易帮助你做决定。
+
+如果后续补出正式时段、媒体图或门店延伸活动，站内会继续把这些更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-08-05T13:00:00+08:00',
+    'https://www.instagram.com/openlabel_th/',
+    '/portraits/win-metawin.png',
+    array['win-metawin']
+  ),
+  (
+    'peatnoeul-macau-fan-session-note',
+    'PeatNoeul Macau Fan Session Note',
+    '整理双人福利、票区和这类海外 fan session 值不值得专门安排行程的判断点。',
+    'PeatNoeul 这种海外 fan session，对粉丝来说最重要的从来不是“有没有海报”，而是这场到底值不值得专门跨城去追。票区、双人福利和会后互动规则，会直接影响这场活动的实际价值。
+
+这条快读会先把双人福利、票区和会后互动规则讲清楚，帮助第一次追 PeatNoeul 线的新粉快速判断这场活动更偏福利型还是舞台型。和只看活动海报相比，先看这一条会更容易知道自己该怎么准备。
+
+如果后续补出正式票区图、福利细则或海外粉丝须知，站内会继续把这些更新并回这条稿里。',
+    '活动速递',
+    'published',
+    '2026-08-07T16:30:00+08:00',
+    'https://www.instagram.com/memindyofficial/',
+    '/logos/memindy.svg',
+    array['peat-wasuthorn', 'noeul-nuttarat']
+  ),
+  (
+    'lingling-bangkok-brand-salon-note',
+    'Lingling Bangkok Brand Salon Note',
+    '整理公开区、媒体拍摄和这类个人品牌 salon 值不值得继续追的判断点。',
+    'Lingling 这种个人品牌 salon 最值得先看的，不是活动看起来高级不高级，而是公开区有没有价值、媒体会不会产出足够图像物料。对粉丝来说，这会直接影响到底要不要去现场，还是等站内整理和品牌图就够了。
+
+这条整理会优先说明公开区、媒体拍摄和图像物料密度，帮助想补 Channel 3 个人线的粉丝快速判断这场活动值不值得继续盯。比起只看品牌标题，这种中文快读更能帮你建立判断。
+
+如果后续补出品牌图集、正式时段或门店联动，站内会继续把这些更新并回这条稿里。',
+    '品牌活动',
+    'published',
+    '2026-08-09T11:40:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/portraits/lingling-kwong.png',
+    array['lingling-kwong']
+  ),
+  (
+    'earth-hk-store-day-guide',
+    'Earth Hong Kong Wabi Sabi Store Day Guide',
+    '整理预约、签到和限定物料，帮助粉丝判断这类门店活动怎么玩最值。',
+    'Earth 这种 store day 对粉丝来说，真正值得先看的不是“有没有活动”，而是预约、签到和限定物料到底怎么玩。很多人会被活动名吸引过去，但如果没先看规则，现场体验往往会差很多。
+
+这条快读会优先说明预约方式、签到规则和限定物料，帮助第一次补 Studio Wabi Sabi 线的粉丝快速判断这场门店活动适不适合去。比起只刷几张预热图，先看一条整理好的中文说明会更省时间。
+
+如果后续补出门店地图、预约页或限定领取规则，站内会继续把这些更新并回这一条。',
+    '品牌活动',
+    'published',
+    '2026-08-11T14:20:00+08:00',
+    'https://www.facebook.com/StudiowabisabiTH',
+    '/logos/studio-wabi-sabi.svg',
+    array['earth-katsamonnat']
   )
 on conflict (slug) do update set
   title = excluded.title,
